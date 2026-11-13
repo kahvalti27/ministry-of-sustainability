@@ -5,12 +5,22 @@
 export const TURNS = 16;
 export const METERS = { budget: "Budget", approval: "Approval", environment: "Environment", political: "Political capital" };
 export const SECTORS = { tourism: "Tourism", agriculture: "Agriculture", fashion: "Fashion" };
-const START = { budget: 60, approval: 45, environment: 40, political: 50, tourism: 50, agriculture: 50, fashion: 50 };
+const START = { budget: 30, approval: 45, environment: 40, political: 50, tourism: 50, agriculture: 50, fashion: 50 };
 
 // A sector below CRISIS_BELOW is in crisis: every season it stays there costs CRISIS_COST.
 // Without this, ignoring the economy would be free, because the sector bars cannot end a term.
 export const CRISIS_BELOW = 30;
-export const CRISIS_COST = { budget: 2, approval: 5 };
+export const CRISIS_COST = { approval: 5 };
+
+// Budget day: at the start of years 2, 3 and 4 the Ministry is paid. A base grant, plus tax from
+// each sector by its bar, plus what the cabinet adds by your political capital.
+// Each list is [at least this value, pays this much], best first.
+export const YEAR = 4;  // seasons
+export const INCOME = {
+  base: 6,
+  sector: [[70, 4], [50, 2]],
+  political: [[70, 6], [40, 3]],
+};
 
 const LOSSES = {
   approval: ["Fired", "The Prime Minister thanks you for your service in a statement that does not mention your name."],
@@ -54,6 +64,7 @@ export function newTerm(data, random = Math.random) {
     event: null,
     chosen: null,           // { option, changes } once the player has picked
     crisis: [],             // sectors that were in crisis when the last season closed
+    income: null,           // { lines: [{ label, amount }], total } in the first season of a new year
     ending: null,           // { title, text, lost }
   };
   nextEvent(term);
@@ -133,9 +144,22 @@ export function endTurn(term) {
   } else if (term.turn === TURNS) {
     term.ending = { title: "Term complete", text: "Four years. Sixteen seasons. You are still here, which is more than anyone predicted." };
   } else {
+    term.income = term.turn % YEAR === 0 ? payBudget(term) : null;
     term.turn += 1;
     nextEvent(term);
   }
+}
+
+function payBudget(term) {
+  const pays = (steps, key) => steps.find(([least]) => term.values[key] >= least)?.[1] ?? 0;
+  const lines = [
+    { label: "Base grant", amount: INCOME.base },
+    ...Object.keys(SECTORS).map((key) => ({ label: `${SECTORS[key]} taxes`, amount: pays(INCOME.sector, key) })),
+    { label: "Cabinet goodwill", amount: pays(INCOME.political, "political") },
+  ];
+  const before = term.values.budget;
+  term.values.budget = Math.min(100, before + lines.reduce((sum, line) => sum + line.amount, 0));
+  return { lines, total: term.values.budget - before };
 }
 
 // ---- what the card and the report show --------------------------------------

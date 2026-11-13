@@ -103,6 +103,15 @@ h1, h2, h3, .memo, .meter__name, .button, .grade, kbd, figcaption, label { font-
 .meter.is-danger .meter__value { color: var(--down); }
 
 .crisis { margin: 0 0 12px; padding: 6px 10px; background: var(--card); border: 2px solid var(--down); color: var(--down); font-size: 20px; line-height: 1.15; }
+.payday { margin: 0 0 12px; padding: 6px 10px 8px; background: var(--card); border: 2px solid var(--ink); font-size: 20px; line-height: 1.15; }
+.payday h3 { display: flex; align-items: center; gap: 6px; margin: 0 0 4px; font-size: 22px; }
+.payday ul { margin: 0; padding: 0; list-style: none; }
+.payday li, .payday p { display: flex; justify-content: space-between; gap: 12px; margin: 0; }
+.payday li.is-zero { opacity: .55; }
+.payday li b { color: var(--up); }
+.payday li.is-zero b { color: inherit; }
+.payday p { margin-top: 4px; padding-top: 4px; border-top: 2px dashed var(--ink); }
+.payday p b { color: var(--up); }
 
 /* ---- the card: a memo on the desk ---- */
 .card {

@@ -97,11 +97,25 @@ final report, and they replace a separate "economy" meter: the economy is how th
 are doing.
 
 **Sector crisis.** A sector bar cannot end the game by itself, but a sector below 30 is in crisis:
-every season it stays there costs 2 Budget and 5 Approval (jobs and taxes are gone). Without this
-rule, ignoring the economy was free: a player who always picked the greenest option never lost.
+every season it stays there costs 5 Approval (the jobs are gone). Without this rule, ignoring the
+economy was free: a player who always picked the greenest option never lost.
 
-All values run from 0 to 100. Start: Budget 60, Approval 45, Environment 40, Political capital 50,
-every sector 50. The Minister inherits a country whose environment is already in trouble.
+**Budget day.** Money has a source. At the start of years 2, 3 and 4 the Ministry is paid, and the
+card shows the sum line by line:
+
+| Source | Rule | Pays |
+|---|---|---|
+| Base grant | every year | +6 |
+| Each sector's taxes | bar at 70 or more / 50–69 / under 50 | +4 / +2 / 0 |
+| Cabinet goodwill | Political capital at 70 or more / 40–69 / under 40 | +6 / +3 / 0 |
+
+So a year pays between 6 and 24. This ties the economy to the Ministry's money (wrecking the
+sectors makes you poor) and gives Political capital a second use: spend it now to unlock an
+option, or keep it for a bigger budget next year. Budget stops at 100.
+
+All values run from 0 to 100. Start: Budget 30, Approval 45, Environment 40, Political capital 50,
+every sector 50. The Minister inherits a country whose environment is already in trouble and a
+Ministry with little money: the first year is tight, and the first budget day is a relief.
 
 ### Balance targets
 
@@ -114,13 +128,15 @@ Measured in November 2026, 20,000 terms per strategy, all 26 events:
 
 | Strategy | Loses | Lost to Budget / Approval / Environment |
 |---|---|---|
-| Random | 32% | 10% / 12% / 10% |
-| Careful (protects the lowest of the three lethal meters, ignores sectors) | 14% | 0% / 14% / 0% |
+| Random | 34% | 12% / 12% / 9% |
+| Careful (protects the lowest of the three lethal meters, ignores sectors) | 13% | 0% / 13% / 0% |
 | Always the greenest option | 96% | 0% / 96% / 0% |
-| Always the most popular option | 35% | 34% / 0% / 1% |
+| Always the most popular option | 8% | 7% / 0% / 1% |
 
 Before the sector crisis rule and the new start values, random play lost 13% of the time and the
-greenest-option strategy never lost.
+greenest-option strategy never lost. Before budget day (start Budget 60, no income, crisis also
+cost 2 Budget) the always-popular strategy lost 35% of the time, nearly all to Budget; yearly
+income now keeps it alive, and it usually ends as The Greenwasher or The Survivor.
 
 ## 5. Design rules
 

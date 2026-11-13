@@ -1,10 +1,10 @@
 // Ministry of Sustainability: the screen. The rules live in engine.js, the content in events.json.
 
-import { TURNS, METERS, SECTORS, CRISIS_BELOW, CRISIS_COST, newTerm, choose, endTurn, canAfford,
+import { TURNS, YEAR, METERS, SECTORS, CRISIS_BELOW, CRISIS_COST, newTerm, choose, endTurn, canAfford,
   eventText, portraitFor, grade, overallGrade, reportLines, opinions, termTitle } from "./engine.js";
 import { play, isMuted, toggleMute } from "./sound.js";
 
-const SEASONS = ["Spring", "Summer", "Autumn", "Winter"];
+const SEASONS = ["Spring", "Summer", "Autumn", "Winter"];  // one year: YEAR seasons
 const LABELS = { ...METERS, ...SECTORS };
 const LETHAL = ["budget", "approval", "environment"];  // a term ends when one of these hits 0
 const DANGER_BELOW = 20;
@@ -43,7 +43,7 @@ function meter(key) {
 }
 
 function header() {
-  const year = Math.ceil(state.turn / 4);
+  const year = Math.ceil(state.turn / YEAR);
   const seasons = Array.from({ length: TURNS }, (_, i) =>
     `<i class="${i + 1 < state.turn ? "is-past" : i + 1 === state.turn ? "is-now" : ""}"></i>`).join("");
   return `
@@ -51,7 +51,7 @@ function header() {
       <img class="top__seal" src="assets/ui/seal.png" width="40" height="40" alt="">
       <div class="top__text">
         <h1>Ministry of Sustainability</h1>
-        <p class="when">${esc(country)} · Year ${year}, ${SEASONS[(state.turn - 1) % 4]}</p>
+        <p class="when">${esc(country)} · Year ${year}, ${SEASONS[(state.turn - 1) % YEAR]}</p>
       </div>
       <span class="top__buttons">
         <button class="help ${isMuted() ? "is-off" : ""}" data-mute aria-label="Sound" aria-pressed="${!isMuted()}">♪</button>
@@ -63,7 +63,19 @@ function header() {
     <section class="meters meters--sectors" aria-label="Sectors">${Object.keys(SECTORS).map(meter).join("")}</section>`;
 }
 
-// Shown above the card while a sector is in crisis, so the drain on Budget and Approval is no surprise.
+// Shown above the card in the first season of a new year: what the Ministry was paid, and why.
+function budgetNote() {
+  if (!state.income) return "";
+  const lines = state.income.lines.map((l) => `<li class="${l.amount ? "" : "is-zero"}"><span>${l.label}</span><b>${signed(l.amount)}</b></li>`).join("");
+  return `
+    <section class="payday" aria-label="Budget day">
+      <h3>${icon("budget", 16)}Budget day · Year ${Math.ceil(state.turn / YEAR)}</h3>
+      <ul>${lines}</ul>
+      <p><span>Paid into your Budget</span><b>${signed(state.income.total)}</b></p>
+    </section>`;
+}
+
+// Shown above the card while a sector is in crisis, so the drain is no surprise.
 function crisisNote() {
   if (!state.crisis.length) return "";
   const costs = Object.entries(CRISIS_COST).map(([key, cost]) => `${cost * state.crisis.length} ${LABELS[key]}`);
@@ -156,7 +168,8 @@ function helpCard() {
     "Each season one problem lands on your desk. Pick one answer. Every answer costs something.",
     `Keep ${icon("budget", 16)}<b>Budget</b>, ${icon("approval", 16)}<b>Approval</b> and ${icon("environment", 16)}<b>Environment</b> above zero. If one of them hits zero, your term is over.`,
     `${icon("political", 16)}<b>Political capital</b> is what you spend to overrule the cabinet. Run out, and those answers are locked.`,
-    `<b>Tourism</b>, <b>Agriculture</b> and <b>Fashion</b> decide your grades in the final report. A sector below ${CRISIS_BELOW} is in crisis and drains your Budget and Approval every season.`,
+    `<b>Tourism</b>, <b>Agriculture</b> and <b>Fashion</b> decide your grades in the final report. A sector below ${CRISIS_BELOW} is in crisis and drains your Approval every season.`,
+    "Every new year is budget day. Healthy sectors pay more tax, and a cabinet that likes you adds more on top.",
     "Some choices come back to your desk a few seasons later.",
   ];
   const list = `<ol class="rules">${rules.map((r) => `<li>${r}</li>`).join("")}</ol>`;
@@ -191,7 +204,7 @@ function render() {
     app.innerHTML = (started ? header() : "") + helpCard();
     return window.scrollTo(0, 0);
   }
-  app.innerHTML = header() + crisisNote() + (state.ending ? reportCard() : eventCard());
+  app.innerHTML = header() + budgetNote() + crisisNote() + (state.ending ? reportCard() : eventCard());
   const next = app.querySelector("[data-next]");
   if (next) next.focus({ preventScroll: true });
   else window.scrollTo(0, 0);  // a new card or the report starts at the top
