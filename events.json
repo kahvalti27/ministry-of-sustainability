@@ -228,7 +228,11 @@
           },
           "sets_flags": [
             "hazelnut_monoculture"
-          ]
+          ],
+          "schedules": {
+            "event": "one_bad_frost",
+            "in_turns": 4
+          }
         },
         {
           "label": "Sign for half the harvest and keep the rest of the land mixed.",
@@ -327,7 +331,11 @@
           },
           "sets_flags": [
             "cruise_welcome"
-          ]
+          ],
+          "schedules": {
+            "event": "slight_scrape",
+            "in_turns": 3
+          }
         },
         {
           "label": "Send it to the industrial port outside town.",
@@ -869,6 +877,303 @@
       ]
     },
     {
+      "id": "poll_panic",
+      "draft": true,
+      "sector": "cross",
+      "speaker": "edward_collins",
+      "title": "Poll Panic",
+      "text": "The Prime Minister's approval has slipped two points and he has not slept. He needs a quick win from your Ministry by Friday: something green, cheap and photogenic. He has a list. Every item on it involves a ribbon.",
+      "requires": [],
+      "blocks": [],
+      "earliest_turn": 2,
+      "options": [
+        {
+          "label": "A new law: paper straws in every beach bar.",
+          "result": "The straws go soggy in four minutes. The photo of the Prime Minister drinking through one is on every front page, which was the point.",
+          "effects": {
+            "approval": 10,
+            "political": 10,
+            "budget": -5,
+            "environment": -5
+          },
+          "sets_flags": [
+            "paper_straws"
+          ],
+          "looks_green": true,
+          "real_story": "2023: most paper straws tested had forever chemicals in them."
+        },
+        {
+          "label": "Declare a National Day of Sustainability.",
+          "result": "There is a parade. The floats run on diesel.",
+          "effects": {
+            "approval": 5,
+            "political": 5,
+            "budget": -10
+          },
+          "sets_flags": [
+            "green_day"
+          ],
+          "looks_green": true
+        },
+        {
+          "label": "Offer him something real instead. It will take two years.",
+          "result": "He listens to the whole plan, then asks whether it could be done by Friday, with a ribbon.",
+          "effects": {
+            "environment": 10,
+            "political": -15
+          },
+          "sets_flags": [
+            "slow_plan"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "water_war",
+      "draft": true,
+      "sector": "cross",
+      "speaker": "walter_briggs",
+      "title": "The Water War",
+      "text": "It has not rained since spring. The reservoir holds enough water for the farms or for the coast's hotels, pools and golf courses, but not for both. The Farmers' Union and the Minister of Tourism are both in your office. Neither has sat down.",
+      "real_story": "2024: in a record drought, one region cut farm irrigation by 80% while hotels paid for their own desalination plant.",
+      "intro_if": {
+        "flag": "farmers_at_table",
+        "text": "The Farmers' Union kept its chair at your table, and today it is using it."
+      },
+      "requires": [],
+      "blocks": [],
+      "earliest_turn": 5,
+      "options": [
+        {
+          "label": "Farms first.",
+          "result": "The harvest is saved. The hotels fill their pools with seawater and call it \"thalassotherapy\".",
+          "effects": {
+            "agriculture": 15,
+            "tourism": -15,
+            "political": -5
+          },
+          "sets_flags": [
+            "water_to_farms"
+          ]
+        },
+        {
+          "label": "Hotels first.",
+          "result": "The pools stay blue. The fields do not stay green. A tomato now costs what a cocktail used to.",
+          "effects": {
+            "tourism": 15,
+            "agriculture": -15,
+            "approval": -5
+          },
+          "sets_flags": [
+            "water_to_hotels"
+          ]
+        },
+        {
+          "label": "Ration everyone equally and fix the leaking pipes.",
+          "result": "Everyone is equally furious, which the Prime Minister calls \"balance\". The pipes, it turns out, were losing a third of the water.",
+          "effects": {
+            "environment": 10,
+            "budget": -15,
+            "agriculture": -5,
+            "tourism": -5
+          },
+          "sets_flags": [
+            "water_rationed"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "green_fund",
+      "draft": true,
+      "sector": "cross",
+      "speaker": "edward_collins",
+      "title": "The Neighbours' Green Fund",
+      "text": "The rich bloc next door is offering {Country} a green fund. The Prime Minister has already announced it. The small print says the money arrives as carbon credits from a forest nobody in the Ministry can find on a map, and that their inspectors get a desk in your office.",
+      "requires": [],
+      "blocks": [],
+      "earliest_turn": 3,
+      "options": [
+        {
+          "label": "Take the credits and declare the Ministry carbon neutral.",
+          "result": "The Ministry is now officially carbon neutral. Nothing about the Ministry has changed, including the boiler.",
+          "effects": {
+            "approval": 10,
+            "budget": 5,
+            "environment": -10
+          },
+          "sets_flags": [
+            "carbon_neutral"
+          ],
+          "looks_green": true,
+          "real_story": "2023: an investigation found most of one big certifier's rainforest credits saved no carbon."
+        },
+        {
+          "label": "Ask for cash, and accept the inspectors.",
+          "result": "The money is real. So are the inspectors, who have opinions about your stapler budget.",
+          "effects": {
+            "budget": 15,
+            "political": -10
+          },
+          "sets_flags": [
+            "fund_cash"
+          ]
+        },
+        {
+          "label": "Refuse the fund.",
+          "result": "The Prime Minister calls it \"a bold assertion of independence\", through his teeth.",
+          "effects": {
+            "approval": 5,
+            "political": -15
+          },
+          "sets_flags": [
+            "fund_refused"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "slight_scrape",
+      "draft": true,
+      "sector": "tourism",
+      "speaker": "margaret_hale",
+      "title": "A Slight Scrape",
+      "text": "The world's largest cruise ship has misjudged the old harbour and is now part of it. Six thousand passengers are filming. The harbour master describes the quay as \"shorter than it was\".",
+      "real_story": "2019: a cruise ship lost control in a lagoon city and hit a quay and a tour boat.",
+      "follow_up_only": true,
+      "options": [
+        {
+          "label": "Bill the cruise line for every stone.",
+          "result": "They pay, and announce that next season they will dock somewhere \"more welcoming\".",
+          "effects": {
+            "budget": 10,
+            "tourism": -10
+          },
+          "sets_flags": [
+            "cruise_billed"
+          ]
+        },
+        {
+          "label": "Repair it quietly with public money.",
+          "result": "The quay is rebuilt. A plaque thanks the cruise line for its \"continued partnership\".",
+          "effects": {
+            "tourism": 5,
+            "political": 5,
+            "budget": -15
+          },
+          "sets_flags": [
+            "quay_repaired"
+          ]
+        },
+        {
+          "label": "Use the moment to ban big ships from the harbour.",
+          "result": "Nobody argues. Even Margaret Hale waits a full day before objecting.",
+          "effects": {
+            "environment": 10,
+            "approval": 5,
+            "tourism": -10
+          },
+          "sets_flags": [
+            "cruise_banned_late"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "blue_harvest",
+      "draft": true,
+      "sector": "agriculture",
+      "speaker": "walter_briggs",
+      "title": "Blue Harvest",
+      "text": "The fields downstream of the dye works have produced their first indigo tomatoes. They taste normal, which worries the scientists more. Supermarkets abroad have cancelled their orders. One has asked whether you do other colours.",
+      "follow_up_only": true,
+      "options": [
+        {
+          "label": "Destroy the crop and compensate the farmers.",
+          "result": "The farmers are paid. The bonfire is, everyone agrees, a lovely shade.",
+          "effects": {
+            "agriculture": 5,
+            "approval": 5,
+            "budget": -15
+          },
+          "sets_flags": [
+            "crop_destroyed"
+          ]
+        },
+        {
+          "label": "Make the dye works pay.",
+          "result": "The company pays, then sues, then pays again.",
+          "effects": {
+            "agriculture": 5,
+            "fashion": -10,
+            "political": -5
+          },
+          "sets_flags": [
+            "dye_works_pays"
+          ]
+        },
+        {
+          "label": "Sell them as a novelty.",
+          "result": "\"Designer tomatoes\" sell briefly and very well. Then somebody tests one.",
+          "effects": {
+            "agriculture": 10,
+            "approval": -10,
+            "environment": -5
+          },
+          "sets_flags": [
+            "designer_tomatoes"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "one_bad_frost",
+      "draft": true,
+      "sector": "agriculture",
+      "speaker": "walter_briggs",
+      "title": "One Bad Frost",
+      "text": "One cold night in April has killed a third of the hazelnut blossom. Nothing else is planted on the hills, because you signed. The Very Large Chocolate Company regrets the weather and reminds you that the price was fixed.",
+      "real_story": "2025: one spring frost cut the world's biggest hazelnut harvest by about a third.",
+      "follow_up_only": true,
+      "options": [
+        {
+          "label": "Bail out the growers.",
+          "result": "The growers survive the year. The Ministry's accountant does not survive the meeting.",
+          "effects": {
+            "agriculture": 10,
+            "budget": -20
+          },
+          "sets_flags": [
+            "growers_bailed_out"
+          ]
+        },
+        {
+          "label": "Renegotiate the contract.",
+          "result": "The company agrees to a new price. It is described as \"fixed, but differently\".",
+          "effects": {
+            "agriculture": 5,
+            "budget": 5,
+            "political": -10
+          },
+          "sets_flags": [
+            "contract_reopened"
+          ]
+        },
+        {
+          "label": "Tell the growers to plant other things again.",
+          "result": "The vegetables come back. So do the farmers' opinions of you, which have not improved.",
+          "effects": {
+            "environment": 10,
+            "agriculture": -10,
+            "approval": -5
+          },
+          "sets_flags": [
+            "hills_replanted"
+          ]
+        }
+      ]
+    },
+    {
       "id": "ban_the_meme",
       "draft": true,
       "sector": "cross",
@@ -1213,6 +1518,61 @@
       "flag": "wool_label",
       "sector": "fashion",
       "text": "\"Certified Happy Wool\" and \"Certified Happier Wool\" are in court."
+    },
+    {
+      "flag": "water_to_farms",
+      "sector": "agriculture",
+      "text": "In the drought, the water went to the fields. The harvest remembers."
+    },
+    {
+      "flag": "water_to_farms",
+      "sector": "tourism",
+      "text": "In the drought, the hotels filled their pools with the sea and charged extra for it."
+    },
+    {
+      "flag": "water_to_hotels",
+      "sector": "tourism",
+      "text": "In the drought, the pools stayed blue."
+    },
+    {
+      "flag": "water_to_hotels",
+      "sector": "agriculture",
+      "text": "In the drought, the fields did not stay green."
+    },
+    {
+      "flag": "water_rationed",
+      "sector": "agriculture",
+      "text": "The pipes no longer leak. It only took a drought."
+    },
+    {
+      "flag": "cruise_billed",
+      "sector": "tourism",
+      "text": "The cruise line paid for the quay and took its ships elsewhere."
+    },
+    {
+      "flag": "quay_repaired",
+      "sector": "tourism",
+      "text": "The rebuilt quay carries a plaque thanking the ship that broke it."
+    },
+    {
+      "flag": "designer_tomatoes",
+      "sector": "agriculture",
+      "text": "The indigo tomato was briefly the country's most famous export."
+    },
+    {
+      "flag": "crop_destroyed",
+      "sector": "agriculture",
+      "text": "The blue harvest was burned. The smoke was photographed a great deal."
+    },
+    {
+      "flag": "growers_bailed_out",
+      "sector": "agriculture",
+      "text": "The hazelnut growers were rescued from a contract the Minister signed."
+    },
+    {
+      "flag": "hills_replanted",
+      "sector": "agriculture",
+      "text": "The hills grow more than one thing again."
     }
   ]
 }
