@@ -49,7 +49,10 @@ No event appears twice in one term.
 
 ### Lose conditions
 
-- **Approval hits 0:** the Prime Minister fires you.
+Every lost term ends on the same headline, "YOU ARE FIRED!", with the reason under it and the
+scene for that ending:
+
+- **Approval hits 0:** "Nobody likes you". The Prime Minister lets you go.
 - **Budget hits 0:** the Ministry is shut down "temporarily".
 - **Environment hits 0:** the coast is declared a disaster zone and the cabinet needs someone to blame.
 
@@ -352,7 +355,7 @@ real cases.
 |---|---|---|---|
 | X1 | Poll Panic | The PM's approval drops; he wants a "quick win" from you this season | → Political capital |
 | X2 | The Water War | Drought summer: hotels and farmers both need the same water | ← `farmers_at_table` changes who is at the table |
-| X3 | The Neighbours' Green Fund | A rich neighbouring bloc offers a green fund, with strings attached | → Budget, sovereignty jokes |
+| X3 | The Neighbours' Green Fund | The Northern Union, the rich bloc next door, offers a green fund, with strings attached | → Budget, sovereignty jokes |
 
 ### Follow-ups (only appear when scheduled)
 | # | Event | Premise | Scheduled by |

@@ -22,8 +22,10 @@ export const INCOME = {
   political: [[70, 6], [40, 3]],
 };
 
+// Every lost term ends the same way: you are fired. What differs is why: [cause, what happened].
+const FIRED = "You are fired!";
 const LOSSES = {
-  approval: ["Fired", "The Prime Minister thanks you for your service in a statement that does not mention your name."],
+  approval: ["Nobody likes you", "The Prime Minister thanks you for your service in a statement that does not mention your name."],
   budget: ["Closed, temporarily", "The Ministry is out of money. A sign on the door says \"back soon\". It has no date."],
   environment: ["Disaster zone", "The coast has been declared a disaster zone. The cabinet agrees on one thing: it was you."],
 };
@@ -65,7 +67,7 @@ export function newTerm(data, random = Math.random) {
     chosen: null,           // { option, changes } once the player has picked
     crisis: [],             // sectors that were in crisis when the last season closed
     income: null,           // { lines: [{ label, amount }], total } in the first season of a new year
-    ending: null,           // { title, text, lost }
+    ending: null,           // { title, text } and, when the term was lost, { cause, lost }
   };
   nextEvent(term);
   return term;
@@ -140,7 +142,7 @@ export function endTurn(term) {
   }
   const lostBy = Object.keys(LOSSES).find((key) => term.values[key] <= 0);
   if (lostBy) {
-    term.ending = { title: LOSSES[lostBy][0], text: LOSSES[lostBy][1], lost: lostBy };
+    term.ending = { title: FIRED, cause: LOSSES[lostBy][0], text: LOSSES[lostBy][1], lost: lostBy };
   } else if (term.turn === TURNS) {
     term.ending = { title: "Term complete", text: "Four years. Sixteen seasons. You are still here, which is more than anyone predicted." };
   } else {

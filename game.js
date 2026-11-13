@@ -142,6 +142,7 @@ function reportCard() {
       <p class="memo"><span>${state.ending.lost ? "Game over" : "National Sustainability Report"}</span><span>${esc(country)}</span></p>
       ${state.ending.lost ? `<img class="scene" src="assets/scenes/${state.ending.lost}.png" width="160" height="80" alt="">` : ""}
       <h2>${esc(state.ending.title)}</h2>
+      ${state.ending.cause ? `<p class="cause">${esc(state.ending.cause)}</p>` : ""}
       <p class="text">${esc(state.ending.text)}</p>
       ${title ? `<p class="title"><span>Your title</span><b>${esc(title.name)}</b>${esc(title.text)}</p>` : ""}
       <p class="overall">Overall grade <span class="grade grade--big">${overallGrade(state)}</span></p>
@@ -164,9 +165,9 @@ function reportCard() {
 
 function helpCard() {
   const rules = [
-    `You are the new Minister of Sustainability of ${started ? esc(country) : "a small Mediterranean country"}. Your term lasts ${TURNS} seasons.`,
+    `You are the new Minister of Sustainability of ${started ? esc(country) : "a country"}. Your term lasts ${TURNS} seasons.`,
     "Each season one problem lands on your desk. Pick one answer. Every answer costs something.",
-    `Keep ${icon("budget", 16)}<b>Budget</b>, ${icon("approval", 16)}<b>Approval</b> and ${icon("environment", 16)}<b>Environment</b> above zero. If one of them hits zero, your term is over.`,
+    `Keep ${icon("budget", 16)}<b>Budget</b>, ${icon("approval", 16)}<b>Approval</b> and ${icon("environment", 16)}<b>Environment</b> above zero. If one of them hits zero, <strong class="fired">you are fired!</strong>`,
     `${icon("political", 16)}<b>Political capital</b> is what you spend to overrule the cabinet. Run out, and those answers are locked.`,
     `<b>Tourism</b>, <b>Agriculture</b> and <b>Fashion</b> decide your grades in the final report. A sector below ${CRISIS_BELOW} is in crisis and drains your Approval every season.`,
     "Every new year is budget day. Healthy sectors pay more tax, and a cabinet that likes you adds more on top.",
