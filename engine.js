@@ -37,7 +37,7 @@ const QUIET = {
 
 // The title a finished term earns: the first one whose test passes. It names what was given up.
 const TITLES = [
-  ["The Greenwasher", "Everything looked wonderful. The environment has asked not to be quoted.",
+  ["The Greenwasher", "Everything looked wonderful. The environment has asked not to be quoted. You will be re-elected.",
     (v, term) => term.looksGreen.length >= 2 && v.environment < 50],
   ["The Accountant", "The books balance. Very little else does.",
     (v) => v.budget >= 55 && v.environment < 50],

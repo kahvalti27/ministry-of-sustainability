@@ -138,6 +138,11 @@ greenest-option strategy never lost. Before budget day (start Budget 60, no inco
 cost 2 Budget) the always-popular strategy lost 35% of the time, nearly all to Budget; yearly
 income now keeps it alive, and it usually ends as The Greenwasher or The Survivor.
 
+**This is on purpose, do not "fix" it.** A minister who plays to the crowd and does things that
+only look green finishes the term comfortably. The game does not punish them; it names them. The
+Greenwasher title ends with "You will be re-elected." That is the joke, and it is how the world
+works today.
+
 ## 5. Design rules
 
 - **No free option.** Every option costs something.
