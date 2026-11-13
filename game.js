@@ -172,6 +172,12 @@ function portraitFor(speaker) {
   return mood && state.values[mood.meter] < mood.below ? mood.portrait : speaker;
 }
 
+// An event can open with an extra sentence when an earlier choice set a flag ("intro_if").
+function eventText(ev) {
+  const intro = ev.intro_if && state.flags.has(ev.intro_if.flag) ? ev.intro_if.text + " " : "";
+  return intro + ev.text;
+}
+
 function eventCard() {
   const ev = state.event;
   const speaker = ev.speaker
@@ -193,7 +199,7 @@ function eventCard() {
         </div>
         <span class="stamp" aria-hidden="true">URGENT</span>
       </div>
-      <p class="text">${fill(ev.text)}</p>
+      <p class="text">${fill(eventText(ev))}</p>
       ${body}
     </article>`;
 }

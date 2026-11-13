@@ -608,6 +608,267 @@
       ]
     },
     {
+      "id": "green_gala",
+      "draft": true,
+      "sector": "fashion",
+      "speaker": "julian_frost",
+      "title": "The Green Gala",
+      "text": "Julian Frost is launching an eco collection at a gala with four hundred guests, two private jets and a recycled red carpet. The collection is two per cent recycled. He would like you to cut the ribbon, which is ninety-eight per cent new.",
+      "real_story": "2021: a study found that six in ten green claims by big fashion brands were misleading.",
+      "requires": [],
+      "blocks": [],
+      "earliest_turn": 1,
+      "options": [
+        {
+          "label": "Cut the ribbon and smile.",
+          "result": "The photo of you and Julian Frost is everywhere. So is the collection: it sells out and is restocked nine times.",
+          "effects": {
+            "fashion": 10,
+            "political": 5,
+            "environment": -10
+          },
+          "sets_flags": [
+            "gala_attended"
+          ]
+        },
+        {
+          "label": "Take his other offer: a free organic cotton tote bag for every citizen.",
+          "result": "Four million totes are delivered. Most households now own six. They are kept in a larger tote.",
+          "effects": {
+            "approval": 10,
+            "fashion": 5,
+            "environment": -10
+          },
+          "sets_flags": [
+            "free_totes"
+          ],
+          "looks_green": true,
+          "real_story": "2018: a study found a cotton tote must be used thousands of times to match a plastic bag."
+        },
+        {
+          "label": "Announce rules for the word \"sustainable\" on a label.",
+          "result": "Labels now have to be true. The collection is renamed \"Mostly New\".",
+          "effects": {
+            "environment": 10,
+            "fashion": -10,
+            "political": -5
+          },
+          "sets_flags": [
+            "label_law"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "blue_river",
+      "draft": true,
+      "sector": "fashion",
+      "speaker": "lily_carter",
+      "title": "The River Is Blue Today",
+      "text": "The river through the textile district has turned indigo. Last month it was coral. A dye works upstream says this is a coincidence and also a trade secret. Downstream, farmers are watering their fields with it.",
+      "real_story": "today: near some textile towns, the river changes colour with whatever dye was used that week.",
+      "requires": [],
+      "blocks": [],
+      "earliest_turn": 2,
+      "options": [
+        {
+          "label": "Shut the dye works until it treats its water.",
+          "result": "The river runs clear. Six hundred workers are sent home on full uncertainty.",
+          "effects": {
+            "environment": 15,
+            "fashion": -10,
+            "approval": -5
+          },
+          "sets_flags": [
+            "dye_works_closed"
+          ]
+        },
+        {
+          "label": "Fine them.",
+          "result": "The fine is paid the same afternoon. It was cheaper than the filter.",
+          "effects": {
+            "budget": 10,
+            "environment": -5,
+            "approval": -5
+          },
+          "sets_flags": [
+            "dye_fined"
+          ],
+          "schedules": {
+            "event": "blue_harvest",
+            "in_turns": 3
+          }
+        },
+        {
+          "label": "Pay for a treatment plant with public money.",
+          "result": "The river is clean. The company thanks you in its annual report, under \"cost savings\".",
+          "effects": {
+            "budget": -20,
+            "environment": 10,
+            "fashion": 5
+          },
+          "sets_flags": [
+            "public_filter"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mount_textile",
+      "draft": true,
+      "sector": "fashion",
+      "speaker": "julian_frost",
+      "title": "Mount Textile",
+      "text": "A mountain of unsold and unwanted clothes has appeared outside the capital. It has its own weather and, according to one hiker, a summit café. Every brand in {Country} agrees it is a tragedy and that the clothes belong to somebody else.",
+      "real_story": "2021: a dump of unsold clothes in a desert was reported to be growing by 39,000 tonnes a year.",
+      "intro_if": {
+        "flag": "compost_minister",
+        "text": "\"You're the waste person, right?\" says the voice on the phone."
+      },
+      "requires": [],
+      "blocks": [],
+      "earliest_turn": 4,
+      "options": [
+        {
+          "label": "Make the brands pay for every tonne they dump.",
+          "result": "The mountain stops growing. A smaller, quieter mountain begins in the next country along.",
+          "effects": {
+            "environment": 10,
+            "budget": 5,
+            "fashion": -10
+          },
+          "sets_flags": [
+            "dumping_fee"
+          ]
+        },
+        {
+          "label": "Ship it abroad as \"donations\".",
+          "result": "The mountain is gone. Somewhere far away, a beach has received a great many ski jackets.",
+          "effects": {
+            "approval": 5,
+            "fashion": 5,
+            "budget": -5,
+            "environment": -5
+          },
+          "sets_flags": [
+            "mountain_exported"
+          ]
+        },
+        {
+          "label": "Burn it for energy.",
+          "result": "The power plant runs for a week on last season's trends. The smoke is, briefly, this season's colours.",
+          "effects": {
+            "budget": 5,
+            "environment": -15,
+            "approval": -5
+          },
+          "sets_flags": [
+            "mountain_burned"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "workshop_door",
+      "draft": true,
+      "sector": "fashion",
+      "title": "Behind the Workshop Door",
+      "text": "Inspectors have opened a door behind a shop in the textile district and found forty people sewing in a room with no windows, sleeping beside their machines. The handbags they make sell for more than they earn in a year. The brand on the label has a very strict code of conduct, which it has never checked.",
+      "real_story": "2024: a court heard that a handbag sold for 2,600 euros had cost 53 euros to make in a subcontracted workshop.",
+      "requires": [],
+      "blocks": [],
+      "earliest_turn": 3,
+      "options": [
+        {
+          "label": "Close the workshop and prosecute its owner.",
+          "result": "The owner is fined. The workshop reopens two streets away under his cousin's name. The handbag is unchanged.",
+          "effects": {
+            "approval": 5,
+            "political": 5,
+            "fashion": -5
+          },
+          "sets_flags": [
+            "workshop_closed"
+          ]
+        },
+        {
+          "label": "Make the brand answer for its subcontractors.",
+          "result": "The brand discovers, with great surprise, that it can afford windows.",
+          "effects": {
+            "approval": 10,
+            "political": -15,
+            "fashion": -10
+          },
+          "sets_flags": [
+            "brands_liable"
+          ]
+        },
+        {
+          "label": "Ask the industry to regulate itself.",
+          "result": "The industry publishes a pledge. It is beautifully typeset.",
+          "effects": {
+            "fashion": 10,
+            "political": 5,
+            "approval": -15
+          },
+          "sets_flags": [
+            "self_regulation"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ethical_wool",
+      "draft": true,
+      "sector": "fashion",
+      "speaker": "julian_frost",
+      "title": "Ethical Wool",
+      "text": "The Sheep Wellbeing Program has had a side effect: {Country}'s wool is now the most ethical in the world, with certificates to prove it. Julian Frost wants all of it, exclusively, for a line of jumpers that cost more than the sheep.",
+      "requires": [
+        "ethical_wool"
+      ],
+      "blocks": [],
+      "earliest_turn": 4,
+      "options": [
+        {
+          "label": "Sell him the exclusive.",
+          "result": "The jumpers sell out abroad. At home nobody can afford one, including the shepherds.",
+          "effects": {
+            "fashion": 15,
+            "budget": 5,
+            "approval": -10
+          },
+          "sets_flags": [
+            "wool_exclusive"
+          ]
+        },
+        {
+          "label": "Set up a public wool label any maker can use.",
+          "result": "Forty small knitters now sell \"Certified Happy Wool\". Julian Frost launches a rival label, \"Certified Happier\".",
+          "effects": {
+            "fashion": 5,
+            "agriculture": 10,
+            "budget": -10
+          },
+          "sets_flags": [
+            "wool_label"
+          ]
+        },
+        {
+          "label": "Keep the wool for local makers only.",
+          "result": "The local jumpers are excellent and itchy. Exports are a thing that happens to other countries.",
+          "effects": {
+            "agriculture": 5,
+            "approval": 5,
+            "fashion": -10
+          },
+          "sets_flags": [
+            "wool_local"
+          ]
+        }
+      ]
+    },
+    {
       "id": "ban_the_meme",
       "draft": true,
       "sector": "cross",
@@ -887,6 +1148,71 @@
       "flag": "village_campaign",
       "sector": "tourism",
       "text": "\"Leave the Resort\" is the most successful slogan the Ministry has ever paid for."
+    },
+    {
+      "flag": "gala_attended",
+      "sector": "fashion",
+      "text": "The Minister's photo with Julian Frost hangs in every shop that sells the eco collection."
+    },
+    {
+      "flag": "free_totes",
+      "sector": "fashion",
+      "text": "Every household owns six tote bags, stored in a seventh."
+    },
+    {
+      "flag": "label_law",
+      "sector": "fashion",
+      "text": "\"Sustainable\" now has a legal meaning. Labels have become much shorter."
+    },
+    {
+      "flag": "dye_works_closed",
+      "sector": "fashion",
+      "text": "The river is one colour again. It is the colour of water."
+    },
+    {
+      "flag": "dye_fined",
+      "sector": "fashion",
+      "text": "The dye works has budgeted for next year's fine."
+    },
+    {
+      "flag": "public_filter",
+      "sector": "fashion",
+      "text": "The public paid to clean a private river. It is very clean."
+    },
+    {
+      "flag": "dumping_fee",
+      "sector": "fashion",
+      "text": "Mount Textile has stopped growing. Its foothills are now abroad."
+    },
+    {
+      "flag": "mountain_exported",
+      "sector": "fashion",
+      "text": "Mount Textile was donated to a beach that did not ask for it."
+    },
+    {
+      "flag": "mountain_burned",
+      "sector": "fashion",
+      "text": "Mount Textile is now part of the atmosphere."
+    },
+    {
+      "flag": "brands_liable",
+      "sector": "fashion",
+      "text": "Workshops now have windows. Handbags cost exactly the same."
+    },
+    {
+      "flag": "self_regulation",
+      "sector": "fashion",
+      "text": "The industry's pledge on workshops has been framed and hung in a workshop."
+    },
+    {
+      "flag": "wool_exclusive",
+      "sector": "fashion",
+      "text": "The world's most ethical jumper costs more than the sheep it came from."
+    },
+    {
+      "flag": "wool_label",
+      "sector": "fashion",
+      "text": "\"Certified Happy Wool\" and \"Certified Happier Wool\" are in court."
     }
   ]
 }
