@@ -158,7 +158,7 @@ def icon(name):
 
 
 def seal():
-    """A round rubber stamp: sun over an olive branch, in one worn colour."""
+    """A round rubber stamp: a sun inside an olive wreath, in one worn colour."""
     c = Canvas(64, 64)
     ink = "scarf"
     for box in ((1, 1, 62, 62), (2, 2, 61, 61), (8, 8, 55, 55)):
@@ -169,21 +169,16 @@ def seal():
         for r in (26.5, 27.5, 28.5) if i % 2 == 0 else (27.5,):
             c.px(round(31.5 + r * math.cos(a)), round(31.5 + r * math.sin(a)), ink)
     # sun
-    c.d.ellipse((26, 14, 37, 25), fill=C[ink])
+    c.d.ellipse((26, 26, 37, 37), fill=C[ink])
     for i in range(8):
-        a = math.radians(i * 45)
+        a = math.radians(i * 45 + 22.5)
         for r in (8, 9, 10):
-            c.px(round(31.5 + r * math.cos(a)), round(19.5 + r * math.sin(a)), ink)
-    # olive branch: a curved stem with leaves alternating above and below it
-    stem = [(15 + i, round(46 - 7 * math.sin(i / 33 * math.pi))) for i in range(34)]
-    for x, y in stem:
-        c.px(x, y, ink)
-    for n, i in enumerate(range(3, 33, 5)):
-        x, y = stem[i]
-        if n % 2 == 0:
-            c.d.ellipse((x - 1, y - 7, x + 1, y - 2), fill=C[ink])
-        else:
-            c.d.ellipse((x - 1, y + 2, x + 1, y + 7), fill=C[ink])
+            c.px(round(31.5 + r * math.cos(a)), round(31.5 + r * math.sin(a)), ink)
+    # olive wreath: chunky leaves around the inner ring, open at the top
+    for deg in range(-50, 231, 14):
+        a = math.radians(deg)
+        x, y = 31.5 + 17 * math.cos(a), 31.5 + 17 * math.sin(a)
+        c.d.ellipse((x - 2, y - 2, x + 2, y + 2), fill=C[ink])
     # wear: a rubber stamp never prints every pixel
     rng = random.Random(7)
     for y in range(64):

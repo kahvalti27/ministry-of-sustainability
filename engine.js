@@ -166,6 +166,12 @@ export function reportLines(term, sector) {
   return (term.data.report_lines ?? []).filter((l) => l.sector === sector && term.flags.has(l.flag)).map((l) => l.text);
 }
 
+/** What each recurring character says at the end: each one judges a single number ("opinions"). */
+export function opinions(term) {
+  return (term.data.opinions ?? []).map(({ who, meter, lines }) =>
+    ({ who, text: lines.find(([least]) => term.values[meter] >= least)[1] }));
+}
+
 /** Only a term that was not lost earns a title. */
 export function termTitle(term) {
   if (!term.ending || term.ending.lost) return null;

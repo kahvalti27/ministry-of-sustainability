@@ -52,12 +52,14 @@ h1, h2, h3, .memo, .meter__name, .button, .grade, kbd, figcaption, label { font-
 .top h1 { margin: 0; font-size: 23px; line-height: 1; letter-spacing: .02em; }
 .when { margin: 0; color: var(--muted); font-size: 19px; line-height: 1.1; overflow-wrap: anywhere; }
 .help {
-  width: 44px; height: 44px;
+  width: 40px; height: 44px;
   background: var(--card); color: var(--ink);
   border: 2px solid var(--ink); border-radius: 0; box-shadow: 3px 3px 0 var(--ink);
   font: 26px var(--head); cursor: pointer; touch-action: manipulation;
 }
 .help:active { transform: translate(3px, 3px); box-shadow: none; }
+.help.is-off { color: var(--rule); text-decoration: line-through; }
+.top__buttons { display: flex; gap: 8px; }
 
 /* sixteen seasons, grouped in years */
 .seasons { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(16, 1fr); gap: 2px; margin-top: 8px; }
@@ -183,6 +185,10 @@ h2 { margin: 0; font-size: 32px; line-height: .95; text-wrap: balance; overflow-
 .sector h3 { display: flex; align-items: center; margin: 0 0 6px; font-size: 24px; line-height: 1; }
 .sector h3 .grade { margin-left: auto; }
 .sector p { margin: 0 0 6px; overflow-wrap: anywhere; }
+.quote { display: flex; gap: 10px; align-items: flex-start; margin: 0 0 10px; }
+.quote img { flex: none; width: 48px; height: 48px; background: var(--paper); border: 2px solid var(--ink); }
+.quote figcaption { font-family: var(--body); line-height: 1.15; }
+.quote b { display: block; font: 16px/1.2 var(--head); font-weight: 400; color: var(--muted); }
 
 /* ---- first screen and rules ---- */
 .card--intro { padding-top: 16px; text-align: center; }

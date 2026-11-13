@@ -1,7 +1,8 @@
 // Ministry of Sustainability: the screen. The rules live in engine.js, the content in events.json.
 
 import { TURNS, METERS, SECTORS, CRISIS_BELOW, CRISIS_COST, newTerm, choose, endTurn, canAfford,
-  eventText, portraitFor, grade, overallGrade, reportLines, termTitle } from "./engine.js";
+  eventText, portraitFor, grade, overallGrade, reportLines, opinions, termTitle } from "./engine.js";
+import { play, isMuted, toggleMute } from "./sound.js";
 
 const SEASONS = ["Spring", "Summer", "Autumn", "Winter"];
 const LABELS = { ...METERS, ...SECTORS };
@@ -52,7 +53,10 @@ function header() {
         <h1>Ministry of Sustainability</h1>
         <p class="when">${esc(country)} · Year ${year}, ${SEASONS[(state.turn - 1) % 4]}</p>
       </div>
-      <button class="help" data-help aria-label="How to play">?</button>
+      <span class="top__buttons">
+        <button class="help ${isMuted() ? "is-off" : ""}" data-mute aria-label="Sound" aria-pressed="${!isMuted()}">♪</button>
+        <button class="help" data-help aria-label="How to play">?</button>
+      </span>
       <div class="seasons" role="img" aria-label="Season ${state.turn} of ${TURNS}">${seasons}</div>
     </header>
     <section class="meters" aria-label="Meters">${Object.keys(METERS).map(meter).join("")}</section>
@@ -131,6 +135,14 @@ function reportCard() {
       <p class="overall">Overall grade <span class="grade grade--big">${overallGrade(state)}</span></p>
       ${sectors}
       ${looksGood}
+      <section class="sector">
+        <h3>What they say</h3>
+        ${opinions(state).map(({ who, text }) => `
+        <figure class="quote">
+          <img src="assets/portraits/${portraitFor(state, who)}.png" width="64" height="64" alt="">
+          <figcaption><b>${personName(who)}</b>${esc(text)}</figcaption>
+        </figure>`).join("")}
+      </section>
       <button class="button" data-restart>Run for another term</button>
       <img class="stamp" src="assets/ui/seal.png" width="64" height="64" alt="">
     </article>`;
@@ -188,9 +200,14 @@ function render() {
 app.addEventListener("click", (e) => {
   const button = e.target.closest("button");
   if (!button || button.disabled) return;
-  if (button.dataset.option) choose(state, state.event.options[Number(button.dataset.option)]);
-  else if ("next" in button.dataset) endTurn(state);
-  else if ("restart" in button.dataset) state = newTerm(data);
+  if (button.dataset.option) {
+    choose(state, state.event.options[Number(button.dataset.option)]);
+    play("stamp");
+  } else if ("next" in button.dataset) {
+    endTurn(state);
+    play(!state.ending ? "page" : state.ending.lost ? "lose" : "win");
+  } else if ("restart" in button.dataset) state = newTerm(data);
+  else if ("mute" in button.dataset) toggleMute();
   else if ("help" in button.dataset) help = true;
   else if ("closeHelp" in button.dataset) help = false;
   else return;

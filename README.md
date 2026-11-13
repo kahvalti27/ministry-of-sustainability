@@ -25,7 +25,7 @@ Then open http://localhost:8123.
 - `events.json` holds every event, option, effect and report line. Adding an event needs no code.
 - `engine.js` is the rules: meters, event selection, flags, scheduled follow-ups, sector crises, the
   final report and its titles. It has no screen attached.
-- `game.js` draws a term in the browser.
+- `game.js` draws a term in the browser; `sound.js` makes the sound effects without any audio files.
 - `tools/balance.mjs` plays thousands of terms with simple strategies and reports how they end
   (`node tools/balance.mjs`). It is how the numbers were tuned.
 - `TASARIM.md` is the design document (rules, event list, build order).
@@ -39,7 +39,7 @@ small "True story" stamp gives only a year and what happened. The sources are he
 
 | Event | Note in the game | Source |
 |---|---|---|
-| Special Delivery | 2024: farmers dumped manure outside government buildings in several countries. | To be added |
+| Special Delivery | 2024: farmers dumped manure outside government buildings in several countries. | [Al Jazeera, 2024](https://www.aljazeera.com/gallery/2024/3/27/angry-farmers-block-brussels-to-protest-eu-policies-cheap-ukraine-imports) |
 | The Olive Plague | 2013: a bacterium began killing one region's olive trees. Millions are gone. | [NPR, 2020](https://www.npr.org/2020/05/03/849551027/southern-europe-could-lose-22-billion-fighting-deadly-olive-tree-disease) |
 | Where Did the Bees Go? | 2018: three pesticides were banned from outdoor use across a continent to protect bees. | [Euronews, 2018](https://www.euronews.com/2018/04/27/eu-nations-back-ban-on-insecticides-to-protect-bees) |
 | The Hazelnut Empire | today: one country grows most of the world's hazelnuts, and one company is its biggest buyer. | [FreshPlaza](https://www.freshplaza.com/europe/article/9792232/turkish-hazelnut-production-drops-sending-prices-soaring/), [T-Vine](https://t-vine.com/ferrero-single-biggest-buyer-of-turkish-hazelnuts-while-germany-biggest-market-in-2017) |
@@ -52,8 +52,8 @@ small "True story" stamp gives only a year and what happened. The sources are he
 | Umbrella Wars | today: in one country, beach concessions were renewed for decades without ever being put up for competition. | [Euronews, 2023](https://www.euronews.com/my-europe/2023/04/20/italian-beach-space-must-be-open-to-competition-ecj-ruling) |
 | Pay to Enter | 2024: a city began charging day visitors a fee to enter. | [NPR, 2024](https://www.npr.org/2024/04/25/1247162570/venice-entry-fee-day-trippers-tourists) |
 | All Inclusive, Nothing Local (towel option) | 1986: the word "greenwashing" was invented to describe hotel towel cards. | [NRDC](https://www.nrdc.org/stories/what-greenwashing) |
-| The Documentary | today: campaigners ask tourists to boycott a group of islands over a traditional hunt. | To be added |
-| Wool-Free Wool | today: washing synthetic clothes is one of the main sources of microplastics in the sea. | To be added |
+| The Documentary | today: campaigners ask tourists to boycott a group of islands over a traditional hunt. | [The Inertia](https://www.theinertia.com/environment/cruise-lines-protest-faroe-islands-whale-hunt/) |
+| Wool-Free Wool | today: washing synthetic clothes is one of the main sources of microplastics in the sea. | [IUCN, 2017](https://iucn.org/news/secretariat/201702/invisible-plastic-particles-textiles-and-tyres-major-source-ocean-pollution-–-iucn-study) |
 | The Green Gala | 2021: a study found that six in ten green claims by big fashion brands were misleading. | [Eco-Business](https://www.eco-business.com/zh-hans/news/almost-60-per-cent-of-sustainability-claims-by-fashion-giants-are-greenwash/) |
 | The River Is Blue Today | today: near some textile towns, the river changes colour with whatever dye was used that week. | [The Daily Star](https://www.thedailystar.net/backpage/news/louhajang-river-palette-pollution-1738819) |
 | Mount Textile | 2021: a dump of unsold clothes in a desert was reported to be growing by 39,000 tonnes a year. | [Al Jazeera, 2021](https://www.aljazeera.com/gallery/2021/11/8/chiles-desert-dumping-ground-for-fast-fashion-leftovers) |

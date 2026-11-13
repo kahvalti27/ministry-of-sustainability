@@ -7,6 +7,116 @@
       "portrait": "edward_collins_worried"
     }
   },
+  "opinions": [
+    {
+      "who": "edward_collins",
+      "meter": "political",
+      "lines": [
+        [
+          60,
+          "A team player. I have no idea what you did, which is ideal."
+        ],
+        [
+          30,
+          "You were in my cabinet? Of course you were."
+        ],
+        [
+          0,
+          "I am told you had ideas. I am having that looked into."
+        ]
+      ]
+    },
+    {
+      "who": "margaret_hale",
+      "meter": "tourism",
+      "lines": [
+        [
+          60,
+          "The ships are full and so are the beaches. We should talk about a second harbour."
+        ],
+        [
+          30,
+          "The numbers are flat. I blame the turtles."
+        ],
+        [
+          0,
+          "My office overlooks an empty marina. I think of you often."
+        ]
+      ]
+    },
+    {
+      "who": "julian_frost",
+      "meter": "fashion",
+      "lines": [
+        [
+          60,
+          "You understood the brand. The planet is very on-trend this year."
+        ],
+        [
+          30,
+          "We had our differences. Mine were better dressed."
+        ],
+        [
+          0,
+          "You cost me a season. I have named a shade of grey after you."
+        ]
+      ]
+    },
+    {
+      "who": "lily_carter",
+      "meter": "environment",
+      "lines": [
+        [
+          60,
+          "I ran out of things to chain myself to. Annoying. Thanks."
+        ],
+        [
+          30,
+          "Better than the last one. That is not a compliment."
+        ],
+        [
+          0,
+          "See you at the gates. Bring your own chain."
+        ]
+      ]
+    },
+    {
+      "who": "grandma_rose",
+      "meter": "approval",
+      "lines": [
+        [
+          60,
+          "The café says you did all right. The café never says that."
+        ],
+        [
+          30,
+          "You tried. My grandson also tries."
+        ],
+        [
+          0,
+          "I have seen ministers come and go. You went."
+        ]
+      ]
+    },
+    {
+      "who": "walter_briggs",
+      "meter": "agriculture",
+      "lines": [
+        [
+          60,
+          "The fields are green and the union is quiet. Do not get used to it."
+        ],
+        [
+          30,
+          "We have had worse. We have delivered worse."
+        ],
+        [
+          0,
+          "Check your doorstep in the morning."
+        ]
+      ]
+    }
+  ],
   "events": [
     {
       "id": "sheep_protest",

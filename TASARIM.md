@@ -61,7 +61,9 @@ pick the options the cabinet already likes.
 
 - A grade per sector (Tourism, Agriculture, Fashion) and overall.
 - A short funny paragraph per sector based on the flags collected.
-- What each recurring character thinks of you.
+- What each recurring character thinks of you. Each one judges a single number: the Prime
+  Minister your Political capital, Grandma Rose your Approval, Lily Carter the Environment, and
+  Margaret Hale, Julian Frost and Walter Briggs their own sector. Three possible lines each.
 
 ### What success means
 
@@ -233,7 +235,8 @@ The two tools do different jobs:
 - **Flags** are memory: they open events in the random pool, change an event's opening sentence
   and decide the text of the final report. An option only sets a flag that something reads.
 
-The file also has three top-level fields: `portrait_moods`, which swaps a character's portrait
+The file also has four top-level fields: `opinions`, the lines each character can say in the
+final report (`who`, `meter`, and `lines` as pairs of a minimum value and a sentence, highest first); `portrait_moods`, which swaps a character's portrait
 while a meter is below a number (the Prime Minister looks worried while Approval is under 50);
 `country`, the name the first screen suggests when the player has not typed one; and
 `report_lines`, the flag-based sentences of the final report (`flag`, `sector`, `text`).
@@ -359,12 +362,13 @@ real cases.
 3. **Balance script.** *Done:* `tools/balance.mjs` plays thousands of terms and reports how often
    each lose condition happens and where the meters end. The numbers meet the targets in section 4.
    Run it again after any change to effects.
-4. **Playtest with 5–10 people**, short written report: where they got stuck, which events they
+4. **Playtest with 5–10 people** (how to run it: `TEST_REHBERI.md`), short written report: where they got stuck, which events they
    remembered, how long a term took.
 5. **Look and polish, then release.** *Started:* icons, seal, memo layout, first screen with the
    cast, season track, danger and crisis warnings, keyboard shortcuts (A/B/C). The cover (`art/cover.png`,
-   630×500) and a picture for each of the three lose screens are drawn by `tools/scenes.py`. Still
-   open: sound.
+   630×500) and a picture for each of the three lose screens are drawn by `tools/scenes.py`. Sound:
+   five short effects made by the browser's synthesizer (`sound.js`), with a mute button that is
+   remembered.
 
 ### Not in the first release
 

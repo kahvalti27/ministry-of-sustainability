@@ -11,16 +11,17 @@ SCENES = ASSETS / "scenes"
 W, H = 160, 80
 
 
-def person(c, x, y, coat="navy", facing=1):
-    """A small figure about 24 pixels tall, feet at (x, y)."""
-    c.rect((x - 3, y - 9, x - 1, y - 1), "char")          # legs
-    c.rect((x + 1, y - 9, x + 3, y - 1), "char")
-    c.rect((x - 4, y - 1, x - 1, y), "line"); c.rect((x + 1, y - 1, x + 4, y), "line")
-    c.rect((x - 4, y - 18, x + 4, y - 9), coat)            # coat
-    c.col(x + 4 * facing, y - 18, y - 9, "navy_d")
-    c.ell((x - 3, y - 25, x + 3, y - 19), "skin")          # head
-    c.row(y - 25, x - 2, x + 2, "hair_d"); c.row(y - 24, x - 3, x + 3, "hair_d")
-    c.px(x + 1 * facing, y - 22, "line")
+def person(c, x, y, k=2, coat="navy"):
+    """A figure walking right, feet at (x, y), drawn k times larger than its 25-pixel sketch."""
+    def box(x0, y0, x1, y1, colour):
+        c.rect((x + x0 * k, y + y0 * k, x + x1 * k + k - 1, y + y1 * k + k - 1), colour)
+    box(-3, -9, -1, -1, "char"); box(1, -9, 3, -1, "char")          # legs
+    box(-4, -1, -1, -1, "line"); box(1, -1, 4, -1, "line")          # shoes
+    box(-4, -18, 4, -10, coat); box(4, -18, 4, -10, "navy_d")       # coat
+    box(-1, -18, 0, -15, "white"); box(-1, -16, -1, -12, "red")     # shirt and tie
+    box(-3, -25, 3, -19, "skin"); box(3, -24, 3, -20, "skin2")      # head
+    box(-3, -26, 3, -25, "hair_d"); box(-4, -25, -3, -22, "hair_d") # hair
+    box(1, -23, 1, -23, "line"); box(1, -21, 2, -21, "skin3")       # eye, and a mouth that has given up
 
 
 # ---- Approval hits 0: fired ---------------------------------------------------------
@@ -41,11 +42,12 @@ def fired():
     c.rect((30, 60, 61, 63), "white"); c.rect((26, 63, 65, 66), "cream")  # steps
     c.col(92, 6, 62, "line")
     # the former Minister, with a box of belongings
-    person(c, 118, 70)
-    c.rect((122, 52, 134, 60), "wood"); c.rect((122, 52, 134, 53), "wood_d")
-    c.rect((121, 55, 123, 57), "skin"); c.px(128, 56, "wood_d")
-    c.poly([(126, 52), (126, 46), (129, 43), (130, 47), (129, 52)], "green")  # the office plant
-    c.rect((131, 48, 133, 52), "white")
+    person(c, 116, 76)
+    c.rect((126, 44, 146, 58), "wood"); c.rect((126, 44, 146, 46), "wood_d"); c.rect((135, 50, 137, 52), "wood_d")
+    c.rect((123, 48, 127, 52), "skin")                                          # the hand that carries it
+    c.poly([(132, 44), (131, 34), (136, 28), (139, 35), (137, 44)], "green")    # the office plant
+    c.line([(135, 44), (135, 32)], "green_d")
+    c.rect((140, 38, 144, 44), "white"); c.px(142, 40, "hair_d")                # one framed certificate
     # papers on the wind
     for x, y in ((70, 40), (84, 50), (100, 34), (146, 30)):
         c.rect((x, y, x + 4, y + 3), "white"); c.px(x + 1, y + 1, "hair_d"); c.px(x + 3, y + 2, "hair_d")
@@ -191,6 +193,8 @@ def cover():
     for cx, cy in ((200, 150), (214, 134), (236, 126), (262, 124), (284, 134), (298, 152), (300, 174), (290, 192), (196, 174)):
         c.ell((cx - 9, cy - 9, cx + 9, cy + 9), "white")
     c.recolor("white", "cream", lambda x, y: x >= 180 and y >= 120 and (x + y >= 474 or y >= 192))
+    for cx, cy in ((262, 150), (280, 162), (268, 176), (286, 182), (252, 134), (274, 138), (198, 168), (290, 148), (258, 192)):
+        c.d.arc((cx - 4, cy - 4, cx + 4, cy + 4), 200, 20, fill=C["cream_d"])   # curls of wool
     c.ell((206, 140, 250, 192), "char"); c.ell((210, 144, 246, 188), "char_l")       # face
     c.poly([(204, 150), (190, 144), (196, 160)], "char"); c.poly([(252, 150), (266, 144), (260, 160)], "char")  # ears
     for cx, cy in ((216, 138), (228, 132), (240, 138)):                             # woolly fringe
