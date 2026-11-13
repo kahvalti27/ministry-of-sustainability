@@ -51,7 +51,6 @@ small "True story" stamp gives only a year and what happened. The sources are he
 | All Inclusive, Nothing Local (towel option) | 1986: the word "greenwashing" was invented to describe hotel towel cards. | [NRDC](https://www.nrdc.org/stories/what-greenwashing) |
 | The Documentary | today: campaigners ask tourists to boycott a group of islands over a traditional hunt. | To be added |
 | Wool-Free Wool | today: washing synthetic clothes is one of the main sources of microplastics in the sea. | To be added |
-
 | The Green Gala | 2021: a study found that six in ten green claims by big fashion brands were misleading. | [Eco-Business](https://www.eco-business.com/zh-hans/news/almost-60-per-cent-of-sustainability-claims-by-fashion-giants-are-greenwash/) |
 | The River Is Blue Today | today: near some textile towns, the river changes colour with whatever dye was used that week. | [The Daily Star](https://www.thedailystar.net/backpage/news/louhajang-river-palette-pollution-1738819) |
 | Mount Textile | 2021: a dump of unsold clothes in a desert was reported to be growing by 39,000 tonnes a year. | [Al Jazeera, 2021](https://www.aljazeera.com/gallery/2021/11/8/chiles-desert-dumping-ground-for-fast-fashion-leftovers) |
