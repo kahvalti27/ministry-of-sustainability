@@ -27,7 +27,8 @@ Then open http://localhost:8123.
 - `tools/balance.mjs` plays thousands of terms with simple strategies and reports how they end
   (`node tools/balance.mjs`). It is how the numbers were tuned.
 - `TASARIM.md` is the design document (rules, event list, build order).
-- `tools/portraits.py` draws the 64×64 character portraits (`python3 tools/portraits.py`).
+- `tools/portraits.py` draws the 64×64 character portraits and `tools/ui_art.py` the meter icons and
+  the ministry seal. Both use the drawing helpers in `tools/pixel.py` and write into `assets/`.
 
 ## True story notes: sources
 

@@ -24,7 +24,7 @@ Why this game: sustainability is about connected systems. Three sectors that dep
 | Language | English only for the first release |
 | Platform | Web game that also works on phones |
 | Technology | Plain HTML, CSS and JavaScript. No framework, no build step |
-| Visual style | Text first: each event looks like a ministry memo or a newspaper front page. Pixel art. 64×64 portraits for the six recurring characters, a ministry seal and a cover image (brief in `CIZIM_TARIFI.md`). The current portraits are drawn by code (`tools/portraits.py`). Pixel font and open-source pixel icons for the meters. No illustration per event |
+| Visual style | Text first: each event looks like a ministry memo or a newspaper front page. Pixel art. 64×64 portraits for the six recurring characters, a ministry seal and a cover image (brief in `CIZIM_TARIFI.md`). The current portraits are drawn by code (`tools/portraits.py`), and so are the seven meter icons and the seal (`tools/ui_art.py`). Fonts: Jersey 15 for headings, VT323 for text. Each event is a memo on a desk: a sector-coloured strip, the speaker's framed portrait, options lettered A to C, and the seal pressed on once a decision is made. No illustration per event |
 | Events per turn | Always one |
 | Country name | Chosen by the player on the first screen (20 characters at most). The box starts with "Meltemia" |
 
@@ -361,7 +361,9 @@ real cases.
    Run it again after any change to effects.
 4. **Playtest with 5–10 people**, short written report: where they got stuck, which events they
    remembered, how long a term took.
-5. **Look and polish, then release.**
+5. **Look and polish, then release.** *Started:* icons, seal, memo layout, first screen with the
+   cast, season track, danger and crisis warnings, keyboard shortcuts (A/B/C). Still open: the cover
+   image for the store page, pictures for the three lose screens, sound.
 
 ### Not in the first release
 
