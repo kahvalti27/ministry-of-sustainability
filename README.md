@@ -27,7 +27,7 @@ Then open http://localhost:8123.
 - `tools/balance.mjs` plays thousands of terms with simple strategies and reports how they end
   (`node tools/balance.mjs`). It is how the numbers were tuned.
 - `TASARIM.md` is the design document (rules, event list, build order).
-- `art/deneme/portreler.py` draws the 64×64 character portraits.
+- `tools/portraits.py` draws the 64×64 character portraits (`python3 tools/portraits.py`).
 
 ## True story notes: sources
 

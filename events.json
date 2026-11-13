@@ -14,9 +14,6 @@
       "speaker": "lily_carter",
       "title": "The Sheep Situation",
       "text": "Animal rights activists have chained themselves to the gates of {Country}'s largest sheep farm. The sheep appear unbothered. The farmer, Mr. Harris, is less so.",
-      "requires": [],
-      "blocks": [],
-      "earliest_turn": 1,
       "options": [
         {
           "label": "\"Sheep have been protested before. They'll survive.\"",
@@ -67,9 +64,6 @@
       "title": "Special Delivery",
       "text": "You arrive at the Ministry to find the entrance buried under four tonnes of manure, delivered personally by the {Country} Farmers' Union. A note on top reads: \"You've been treating us like this for years. Now you know how it smells.\" The press is already here. So are the flies.",
       "real_story": "2024: farmers dumped manure outside government buildings in several countries.",
-      "requires": [],
-      "blocks": [],
-      "earliest_turn": 1,
       "options": [
         {
           "label": "Hold the press conference in front of it. Authenticity sells.",
@@ -114,9 +108,6 @@
       "title": "The Olive Plague",
       "text": "A bacterium is killing {Country}'s olive trees. Some of them were already old when the Romans left. Scientists say every infected grove must be cut down to save the rest. The growers suggest the scientists explain that to a tree somebody's great-grandmother planted.",
       "real_story": "2013: a bacterium began killing one region's olive trees. Millions are gone.",
-      "requires": [],
-      "blocks": [],
-      "earliest_turn": 1,
       "options": [
         {
           "label": "Cut down every infected grove, now.",
@@ -164,9 +155,6 @@
       "title": "Where Did the Bees Go?",
       "text": "{Country}'s beekeepers have arrived at the Ministry carrying empty hives. They blame a pesticide the big fruit growers swear by. The growers have sent a lawyer, a study they paid for, and a very large fruit basket.",
       "real_story": "2018: three pesticides were banned from outdoor use across a continent to protect bees.",
-      "requires": [],
-      "blocks": [],
-      "earliest_turn": 1,
       "options": [
         {
           "label": "Ban the pesticide.",
@@ -187,10 +175,7 @@
             "budget": -5,
             "environment": -5,
             "political": 5
-          },
-          "sets_flags": [
-            "bees_study"
-          ]
+          }
         },
         {
           "label": "Accept the growers' voluntary code of conduct.",
@@ -214,8 +199,6 @@
       "title": "The Hazelnut Empire",
       "text": "A Very Large Chocolate Company wants to buy every hazelnut {Country} grows for the next ten years, at a fixed price. The Prime Minister has already posed with the jar. All the deal needs is your signature, and for the hillsides to grow nothing else.",
       "real_story": "today: one country grows most of the world's hazelnuts, and one company is its biggest buyer.",
-      "requires": [],
-      "blocks": [],
       "earliest_turn": 2,
       "options": [
         {
@@ -240,10 +223,7 @@
           "effects": {
             "agriculture": 5,
             "political": -10
-          },
-          "sets_flags": [
-            "hazelnut_half"
-          ]
+          }
         },
         {
           "label": "Refuse, and fund a growers' cooperative instead.",
@@ -266,8 +246,6 @@
       "title": "Who Picks the Tomatoes?",
       "text": "A journalist has photographed where {Country}'s tomato pickers sleep: sheds with no water, an hour from the fields. The pickers are hired through middlemen who take a cut of every crate. The canning companies say they have never heard of these middlemen, whom they pay monthly.",
       "real_story": "2016: a law against gang-masters was passed after a farm worker died in the fields.",
-      "requires": [],
-      "blocks": [],
       "earliest_turn": 2,
       "options": [
         {
@@ -317,9 +295,6 @@
       "title": "The Floating City",
       "text": "The Minister of Tourism has wonderful news: the world's largest cruise ship wants to dock in {Country}'s old harbour. It carries six thousand guests and is taller than the cathedral. \"Think of it,\" she says, \"as a second, better skyline.\"",
       "real_story": "2021: a lagoon city banned large cruise ships from its historic centre.",
-      "requires": [],
-      "blocks": [],
-      "earliest_turn": 1,
       "options": [
         {
           "label": "Let it dock.",
@@ -343,10 +318,7 @@
           "effects": {
             "tourism": 5,
             "political": -10
-          },
-          "sets_flags": [
-            "cruise_outside"
-          ]
+          }
         },
         {
           "label": "Ban large ships from the old harbour.",
@@ -371,8 +343,6 @@
       "title": "Nobody Lives Here Anymore",
       "text": "{Country}'s old town has four hundred holiday flats, thirty souvenir shops and, as of this week, eleven residents. One of them is Grandma Rose. Nine people have offered to buy her flat. Two of them asked at a funeral.",
       "real_story": "2023: a historic city banned new short-term holiday lets in its old centre.",
-      "requires": [],
-      "blocks": [],
       "earliest_turn": 2,
       "options": [
         {
@@ -394,10 +364,7 @@
             "budget": 10,
             "tourism": -5,
             "approval": -5
-          },
-          "sets_flags": [
-            "rentals_taxed"
-          ]
+          }
         },
         {
           "label": "Leave the market alone.",
@@ -420,9 +387,6 @@
       "title": "The Secret Beach",
       "text": "An influencer has posted {Country}'s last secret beach to four million followers, with directions. By Friday there are two beach bars, a drone show and a queue for the sunset. The turtles have made no complaint, mostly because they have left.",
       "real_story": "2018: a famous beach was closed to visitors after the crowds wrecked its coral.",
-      "requires": [],
-      "blocks": [],
-      "earliest_turn": 1,
       "options": [
         {
           "label": "Close the beach for the season.",
@@ -472,8 +436,6 @@
       "title": "Umbrella Wars",
       "text": "{Country}'s public beach now has a fence, a doorman and a minimum spend. The beach clubs have rented the sand from the state since before you were born, for roughly the price of a sunbed. The Minister of Tourism calls them \"the backbone of the coast\".",
       "real_story": "today: in one country, beach concessions were renewed for decades without ever being put up for competition.",
-      "requires": [],
-      "blocks": [],
       "earliest_turn": 2,
       "options": [
         {
@@ -522,8 +484,6 @@
       "title": "Pay to Enter",
       "text": "On a summer Saturday the capital's old centre holds ninety thousand day-trippers and nine public toilets. Someone has proposed an entry fee. The Prime Minister has two questions: how much does it raise, and will voters have to pay it?",
       "real_story": "2024: a city began charging day visitors a fee to enter.",
-      "requires": [],
-      "blocks": [],
       "earliest_turn": 3,
       "options": [
         {
@@ -545,10 +505,7 @@
             "environment": 5,
             "approval": 5,
             "tourism": -15
-          },
-          "sets_flags": [
-            "visitor_cap"
-          ]
+          }
         },
         {
           "label": "Build more toilets.",
@@ -571,8 +528,6 @@
       "speaker": "margaret_hale",
       "title": "All Inclusive, Nothing Local",
       "text": "The giant resorts on the south coast fly in their food, their staff and their entertainment. Guests are given a wristband and no reason to leave. In the village next door, four restaurants have closed and the fifth is thinking about it.",
-      "requires": [],
-      "blocks": [],
       "earliest_turn": 2,
       "options": [
         {
@@ -623,9 +578,6 @@
       "title": "The Green Gala",
       "text": "Julian Frost is launching an eco collection at a gala with four hundred guests, two private jets and a recycled red carpet. The collection is two per cent recycled. He would like you to cut the ribbon, which is ninety-eight per cent new.",
       "real_story": "2021: a study found that six in ten green claims by big fashion brands were misleading.",
-      "requires": [],
-      "blocks": [],
-      "earliest_turn": 1,
       "options": [
         {
           "label": "Cut the ribbon and smile.",
@@ -675,8 +627,6 @@
       "title": "The River Is Blue Today",
       "text": "The river through the textile district has turned indigo. Last month it was coral. A dye works upstream says this is a coincidence and also a trade secret. Downstream, farmers are watering their fields with it.",
       "real_story": "today: near some textile towns, the river changes colour with whatever dye was used that week.",
-      "requires": [],
-      "blocks": [],
       "earliest_turn": 2,
       "options": [
         {
@@ -733,8 +683,6 @@
         "flag": "compost_minister",
         "text": "\"You're the waste person, right?\" says the voice on the phone."
       },
-      "requires": [],
-      "blocks": [],
       "earliest_turn": 4,
       "options": [
         {
@@ -783,8 +731,6 @@
       "title": "Behind the Workshop Door",
       "text": "Inspectors have opened a door behind a shop in the textile district and found forty people sewing in a room with no windows, sleeping beside their machines. The handbags they make sell for more than they earn in a year. The brand on the label has a very strict code of conduct, which it has never checked.",
       "real_story": "2024: a court heard that a handbag sold for 2,600 euros had cost 53 euros to make in a subcontracted workshop.",
-      "requires": [],
-      "blocks": [],
       "earliest_turn": 3,
       "options": [
         {
@@ -794,10 +740,7 @@
             "approval": 5,
             "political": 5,
             "fashion": -5
-          },
-          "sets_flags": [
-            "workshop_closed"
-          ]
+          }
         },
         {
           "label": "Make the brand answer for its subcontractors.",
@@ -835,7 +778,6 @@
       "requires": [
         "ethical_wool"
       ],
-      "blocks": [],
       "earliest_turn": 4,
       "options": [
         {
@@ -869,10 +811,7 @@
             "agriculture": 5,
             "approval": 5,
             "fashion": -10
-          },
-          "sets_flags": [
-            "wool_local"
-          ]
+          }
         }
       ]
     },
@@ -883,8 +822,6 @@
       "speaker": "edward_collins",
       "title": "Poll Panic",
       "text": "The Prime Minister's approval has slipped two points and he has not slept. He needs a quick win from your Ministry by Friday: something green, cheap and photogenic. He has a list. Every item on it involves a ribbon.",
-      "requires": [],
-      "blocks": [],
       "earliest_turn": 2,
       "options": [
         {
@@ -896,9 +833,6 @@
             "budget": -5,
             "environment": -5
           },
-          "sets_flags": [
-            "paper_straws"
-          ],
           "looks_green": true,
           "real_story": "2023: most paper straws tested had forever chemicals in them."
         },
@@ -910,9 +844,6 @@
             "political": 5,
             "budget": -10
           },
-          "sets_flags": [
-            "green_day"
-          ],
           "looks_green": true
         },
         {
@@ -921,10 +852,7 @@
           "effects": {
             "environment": 10,
             "political": -15
-          },
-          "sets_flags": [
-            "slow_plan"
-          ]
+          }
         }
       ]
     },
@@ -940,8 +868,6 @@
         "flag": "farmers_at_table",
         "text": "The Farmers' Union kept its chair at your table, and today it is using it."
       },
-      "requires": [],
-      "blocks": [],
       "earliest_turn": 5,
       "options": [
         {
@@ -990,8 +916,6 @@
       "speaker": "edward_collins",
       "title": "The Neighbours' Green Fund",
       "text": "The rich bloc next door is offering {Country} a green fund. The Prime Minister has already announced it. The small print says the money arrives as carbon credits from a forest nobody in the Ministry can find on a map, and that their inspectors get a desk in your office.",
-      "requires": [],
-      "blocks": [],
       "earliest_turn": 3,
       "options": [
         {
@@ -1002,9 +926,6 @@
             "budget": 5,
             "environment": -10
           },
-          "sets_flags": [
-            "carbon_neutral"
-          ],
           "looks_green": true,
           "real_story": "2023: an investigation found most of one big certifier's rainforest credits saved no carbon."
         },
@@ -1014,10 +935,7 @@
           "effects": {
             "budget": 15,
             "political": -10
-          },
-          "sets_flags": [
-            "fund_cash"
-          ]
+          }
         },
         {
           "label": "Refuse the fund.",
@@ -1025,10 +943,7 @@
           "effects": {
             "approval": 5,
             "political": -15
-          },
-          "sets_flags": [
-            "fund_refused"
-          ]
+          }
         }
       ]
     },
@@ -1072,10 +987,7 @@
             "environment": 10,
             "approval": 5,
             "tourism": -10
-          },
-          "sets_flags": [
-            "cruise_banned_late"
-          ]
+          }
         }
       ]
     },
@@ -1107,10 +1019,7 @@
             "agriculture": 5,
             "fashion": -10,
             "political": -5
-          },
-          "sets_flags": [
-            "dye_works_pays"
-          ]
+          }
         },
         {
           "label": "Sell them as a novelty.",
@@ -1154,10 +1063,7 @@
             "agriculture": 5,
             "budget": 5,
             "political": -10
-          },
-          "sets_flags": [
-            "contract_reopened"
-          ]
+          }
         },
         {
           "label": "Tell the growers to plant other things again.",
@@ -1184,7 +1090,6 @@
       "requires": [
         "manure_meme"
       ],
-      "blocks": [],
       "earliest_turn": 3,
       "options": [
         {
@@ -1193,10 +1098,7 @@
           "effects": {
             "political": 10,
             "approval": -15
-          },
-          "sets_flags": [
-            "app_banned"
-          ]
+          }
         },
         {
           "label": "Talk him out of it.",
@@ -1204,10 +1106,7 @@
           "effects": {
             "political": -10,
             "approval": 5
-          },
-          "sets_flags": [
-            "ban_stopped"
-          ]
+          }
         },
         {
           "label": "Make the meme the Ministry's official logo.",
@@ -1216,10 +1115,7 @@
             "budget": -5,
             "political": -5,
             "approval": 10
-          },
-          "sets_flags": [
-            "meme_logo"
-          ]
+          }
         }
       ]
     },

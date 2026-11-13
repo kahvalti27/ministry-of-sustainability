@@ -24,7 +24,7 @@ Why this game: sustainability is about connected systems. Three sectors that dep
 | Language | English only for the first release |
 | Platform | Web game that also works on phones |
 | Technology | Plain HTML, CSS and JavaScript. No framework, no build step |
-| Visual style | Text first: each event looks like a ministry memo or a newspaper front page. Pixel art. 64×64 portraits for the six recurring characters, a ministry seal and a cover image (brief in `CIZIM_TARIFI.md`). The current portraits are drawn by code (`art/deneme/portreler.py`). Pixel font and open-source pixel icons for the meters. No illustration per event |
+| Visual style | Text first: each event looks like a ministry memo or a newspaper front page. Pixel art. 64×64 portraits for the six recurring characters, a ministry seal and a cover image (brief in `CIZIM_TARIFI.md`). The current portraits are drawn by code (`tools/portraits.py`). Pixel font and open-source pixel icons for the meters. No illustration per event |
 | Events per turn | Always one |
 | Country name | Chosen by the player on the first screen (20 characters at most). The box starts with "Meltemia" |
 
@@ -42,7 +42,7 @@ Why this game: sustainability is about connected systems. Three sectors that dep
 1. If a scheduled follow-up is due this turn, it appears. If two are due, the one scheduled first
    appears and the other moves to the next turn.
 2. Otherwise the game picks at random from the events that are allowed: not shown yet, turn is at
-   or past `earliest_turn`, all `requires` flags are set, no `blocks` flag is set.
+   or past `earliest_turn`, all `requires` flags are set.
 3. Among allowed events, the sector shown least often so far goes first, so no sector disappears.
 
 No event appears twice in one term.
@@ -197,7 +197,6 @@ touching the game engine.
   "text": "...",
   "real_story": "...",
   "requires": [],
-  "blocks": [],
   "earliest_turn": 1,
   "follow_up_only": false,
   "options": [
@@ -218,8 +217,8 @@ touching the game engine.
 | `speaker` | Optional. Whose portrait sits on the card: the file name in `assets/portraits/`, e.g. `walter_briggs` |
 | `draft` | Optional. Marks an event whose text is a first draft the owner has not rewritten yet. The engine ignores it |
 | `real_story` | Optional. The true story note shown after the choice: a year and what happened, no names |
-| `requires` / `blocks` | Flags that must be set / must not be set for the event to appear |
-| `earliest_turn` | The event cannot appear before this turn |
+| `requires` | Optional. Flags that must be set for the event to appear |
+| `earliest_turn` | Optional. The event cannot appear before this turn |
 | `follow_up_only` | If true, the event never comes up at random; it only appears when scheduled |
 | `effects` | Keys: `budget`, `approval`, `environment`, `political`, `tourism`, `agriculture`, `fashion` |
 | `sets_flags` | Flags remembered for the rest of the term |
@@ -231,15 +230,13 @@ touching the game engine.
 The two tools do different jobs:
 
 - **`schedules`** is a promise: this follow-up *will* happen, on that turn.
-- **Flags** are memory: they open or close events in the random pool and decide the text of the
-  final report.
+- **Flags** are memory: they open events in the random pool, change an event's opening sentence
+  and decide the text of the final report. An option only sets a flag that something reads.
 
 The file also has three top-level fields: `portrait_moods`, which swaps a character's portrait
 while a meter is below a number (the Prime Minister looks worried while Approval is under 50);
 `country`, the name the first screen suggests when the player has not typed one; and
-`report_lines`, the flag-based sentences of the final report (`flag`, `sector`, `text`). Two
-optional ones, `start` and `rules`, override the start values and the sector crisis numbers; they
-exist so the balance script can try other numbers.
+`report_lines`, the flag-based sentences of the final report (`flag`, `sector`, `text`).
 
 ### True story notes
 

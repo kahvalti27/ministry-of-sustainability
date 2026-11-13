@@ -5,11 +5,12 @@
 export const TURNS = 16;
 export const METERS = { budget: "Budget", approval: "Approval", environment: "Environment", political: "Political capital" };
 export const SECTORS = { tourism: "Tourism", agriculture: "Agriculture", fashion: "Fashion" };
-export const START = { budget: 60, approval: 45, environment: 40, political: 50, tourism: 50, agriculture: 50, fashion: 50 };
+const START = { budget: 60, approval: 45, environment: 40, political: 50, tourism: 50, agriculture: 50, fashion: 50 };
 
-// A sector below `crisis_below` is in crisis: every season it stays there costs `crisis_cost`. Without this, ignoring the economy would be free, because the sector bars
-// cannot end a term. events.json can override these numbers and the start values ("rules", "start").
-const RULES = { crisis_below: 30, crisis_cost: { budget: 2, approval: 5 } };
+// A sector below CRISIS_BELOW is in crisis: every season it stays there costs CRISIS_COST.
+// Without this, ignoring the economy would be free, because the sector bars cannot end a term.
+export const CRISIS_BELOW = 30;
+export const CRISIS_COST = { budget: 2, approval: 5 };
 
 const LOSSES = {
   approval: ["Fired", "The Prime Minister thanks you for your service in a statement that does not mention your name."],
@@ -44,8 +45,7 @@ export function newTerm(data, random = Math.random) {
     data,
     random,
     turn: 1,
-    values: { ...START, ...(data.start ?? {}) },
-    rules: { ...RULES, ...(data.rules ?? {}) },
+    values: { ...START },
     flags: new Set(),
     seen: new Set(),
     scheduled: [],          // { id, turn, order }
@@ -66,8 +66,7 @@ function isAllowed(term, ev) {
   return !ev.follow_up_only
     && !term.seen.has(ev.id)
     && term.turn >= (ev.earliest_turn ?? 1)
-    && (ev.requires ?? []).every((f) => term.flags.has(f))
-    && !(ev.blocks ?? []).some((f) => term.flags.has(f));
+    && (ev.requires ?? []).every((f) => term.flags.has(f));
 }
 
 function pickEvent(term) {
@@ -124,8 +123,8 @@ export function choose(term, option) {
 
 /** Closes the season: the term is lost, complete, or moves to the next event. */
 export function endTurn(term) {
-  term.crisis = Object.keys(SECTORS).filter((key) => term.values[key] < term.rules.crisis_below);
-  for (const [key, cost] of Object.entries(term.rules.crisis_cost)) {
+  term.crisis = Object.keys(SECTORS).filter((key) => term.values[key] < CRISIS_BELOW);
+  for (const [key, cost] of Object.entries(CRISIS_COST)) {
     term.values[key] = Math.max(0, term.values[key] - cost * term.crisis.length);
   }
   const lostBy = Object.keys(LOSSES).find((key) => term.values[key] <= 0);

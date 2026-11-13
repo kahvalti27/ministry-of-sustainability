@@ -1,130 +1,13 @@
-"""The six recurring characters as 64x64 pixel portraits, drawn by code.
+"""The recurring characters as 64x64 pixel portraits, drawn by code.
 
-Run:  python3 portreler.py
-For each character it writes <name>_64.png (the real sprite) and <name>_512.png (8x),
-plus portreler_onizleme.png with all six on paper colour.
+Run:  python3 tools/portraits.py
+Writes assets/portraits/<name>.png and art/portraits_preview.png (all of them, enlarged).
 """
-from pathlib import Path
-from PIL import Image, ImageDraw
+from PIL import Image
 
-HERE = Path(__file__).parent
-S = 64
+from pixel import ASSETS, PAPER, ROOT, S, C, Canvas, PALE, TAN, BROWN
 
-PAL = {
-    "line": (43, 29, 42),
-    "white": (250, 247, 238), "cream": (244, 230, 200), "cream_d": (206, 186, 150),
-    # skin: pale, tanned, brown (light, mid, shadow)
-    "skin": (236, 190, 158), "skin2": (212, 156, 124), "skin3": (170, 112, 92),
-    "tan": (220, 156, 112), "tan2": (188, 120, 84), "tan3": (142, 84, 64),
-    "brown": (180, 120, 84), "brown2": (148, 92, 64), "brown3": (108, 64, 50),
-    "blush": (222, 134, 116),
-    # hair and metal
-    "hair": (214, 214, 222), "hair_d": (156, 156, 172),
-    "bhair": (96, 60, 52), "bhair_d": (66, 42, 42),
-    # cloth
-    "scarf": (196, 86, 58), "scarf_d": (142, 56, 44), "scarf_l": (228, 126, 86),
-    "olive": (108, 124, 60), "olive_d": (72, 88, 44), "olive_l": (144, 160, 82),
-    "navy": (48, 62, 102), "navy_d": (32, 42, 74), "navy_l": (72, 90, 136),
-    "red": (204, 56, 56), "red_d": (150, 38, 46),
-    "gold": (232, 180, 60), "gold_d": (188, 134, 40), "gold_l": (248, 216, 116),
-    "sea": (64, 140, 170), "sea_d": (44, 100, 130), "sea_l": (128, 196, 214),
-    "char": (62, 56, 72), "char_l": (92, 86, 104),
-    "green": (86, 170, 84), "green_d": (48, 120, 64), "green_l": (146, 208, 112),
-    "wood": (152, 102, 62), "wood_d": (110, 70, 48),
-    "tea": (178, 62, 30), "tea_l": (224, 118, 48),
-}
-C = {k: v + (255,) for k, v in PAL.items()}
-
-
-class Canvas:
-    def __init__(self):
-        self.img = Image.new("RGBA", (S, S), (0, 0, 0, 0))
-        self.d = ImageDraw.Draw(self.img)
-        self.no_edge = set()  # pixels that do not get an outline (steam)
-
-    def px(self, x, y, c):
-        if 0 <= x < S and 0 <= y < S:
-            self.img.putpixel((x, y), C[c])
-
-    def pts(self, c, points):
-        for x, y in points:
-            self.px(x, y, c)
-
-    def get(self, x, y):
-        return self.img.getpixel((x, y))
-
-    def row(self, y, x0, x1, c):
-        for x in range(x0, x1 + 1):
-            self.px(x, y, c)
-
-    def col(self, x, y0, y1, c):
-        for y in range(y0, y1 + 1):
-            self.px(x, y, c)
-
-    def ell(self, box, c, outline=None):
-        self.d.ellipse(box, fill=C[c], outline=C[outline] if outline else None)
-
-    def poly(self, points, c, outline=None):
-        self.d.polygon(points, fill=C[c], outline=C[outline] if outline else None)
-
-    def rect(self, box, c, outline=None):
-        self.d.rectangle(box, fill=C[c], outline=C[outline] if outline else None)
-
-    def line(self, points, c, w=1):
-        self.d.line(points, fill=C[c], width=w)
-
-    def arc(self, box, a0, a1, c):
-        self.d.arc(box, start=a0, end=a1, fill=C[c])
-
-    def recolor(self, src, dst, pred):
-        for y in range(S):
-            for x in range(S):
-                if self.get(x, y) == C[src] and pred(x, y):
-                    self.px(x, y, dst)
-
-    def shade_face(self, s, right, bottom):
-        """Light from the top left: darken the right edge and the chin."""
-        self.recolor(s[0], s[1], lambda x, y: x >= right - 4 or y >= bottom - 3)
-        self.recolor(s[1], s[2], lambda x, y: x >= right - 1)
-
-    def eye(self, x, y, s, tall=1, pupil=(1, 2)):
-        """4 pixels wide: white, pupil, pupil, white, with a lid above."""
-        self.row(y - 1, x, x + 3, s[2])
-        for yy in range(y, y + tall):
-            self.row(yy, x, x + 3, "white")
-        for p in pupil:
-            self.px(x + p, y + tall - 1, "line")
-            if tall > 1 and pupil == (1, 2):
-                self.px(x + p, y, "line")
-
-    def nose(self, x, y0, y1, s):
-        self.col(x, y0, y1, s[1])
-        self.pts(s[2], [(x - 1, y1 + 1), (x, y1 + 1)])
-        self.px(x + 1, y1 + 1, s[1])
-
-    def outline(self):
-        edge = []
-        for y in range(S):
-            for x in range(S):
-                if self.get(x, y)[3]:
-                    continue
-                for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1)):
-                    nx, ny = x + dx, y + dy
-                    if 0 <= nx < S and 0 <= ny < S and self.get(nx, ny)[3] and (nx, ny) not in self.no_edge:
-                        edge.append((x, y))
-                        break
-        self.pts("line", edge)
-
-    def save(self, name):
-        self.outline()
-        self.img.save(HERE / f"{name}_64.png")
-        self.img.resize((512, 512), Image.NEAREST).save(HERE / f"{name}_512.png")
-        return self.img
-
-
-PALE = ("skin", "skin2", "skin3")
-TAN = ("tan", "tan2", "tan3")
-BROWN = ("brown", "brown2", "brown3")
+PORTRAITS = ASSETS / "portraits"
 
 
 # ============================================================================
@@ -201,7 +84,7 @@ def grandma_rose():
     c.pts("skin", [(gx - 3, 57), (gx - 2, 57), (gx - 3, 58)]); c.px(gx - 4, 58, "skin2")
     steam = [(46, 43), (47, 42), (47, 41), (46, 40), (49, 44), (50, 43)]
     c.pts("white", steam); c.no_edge.update(steam)
-    return c.save("grandma_rose")
+    return c.save(PORTRAITS / "grandma_rose.png")
 
 
 # ============================================================================
@@ -279,7 +162,7 @@ def edward_collins(worried=False):
     c.ell((38, 58, 47, 66), "skin")
     c.pts("skin", [(42, 56), (43, 56), (44, 56), (42, 57), (43, 57), (44, 57), (45, 57)])
     c.pts("skin3", [(40, 62), (43, 62), (40, 63), (43, 63)])
-    return c.save("edward_collins_worried" if worried else "edward_collins")
+    return c.save(PORTRAITS / ("edward_collins_worried.png" if worried else "edward_collins.png"))
 
 
 # ============================================================================
@@ -338,7 +221,7 @@ def margaret_hale():
     c.poly([(46, 49), (46, 53), (49, 53)], "sea")
     c.poly([(44, 50), (44, 53), (42, 53)], "sea_d")
     c.px(45, 47, "red"); c.px(46, 47, "red")
-    return c.save("margaret_hale")
+    return c.save(PORTRAITS / "margaret_hale.png")
 
 
 # ============================================================================
@@ -387,7 +270,7 @@ def julian_frost():
     c.row(35, 29, 35, "skin3"); c.pts("skin3", [(36, 34), (37, 33)])
     c.row(36, 30, 34, "skin2")
     c.pts("skin2", [(27, 33), (27, 34)])
-    return c.save("julian_frost")
+    return c.save(PORTRAITS / "julian_frost.png")
 
 
 # ============================================================================
@@ -450,7 +333,7 @@ def lily_carter():
     c.rect((38, 50, 41, 57), "red", outline="line")
     c.pts("brown", [(43, 57), (44, 57), (45, 57), (46, 58), (43, 58), (44, 58), (45, 58)])
     c.pts("brown3", [(42, 61), (45, 61), (42, 62), (45, 62)])
-    return c.save("lily_carter")
+    return c.save(PORTRAITS / "lily_carter.png")
 
 
 # ============================================================================
@@ -509,7 +392,7 @@ def walter_briggs():
     c.pts("white", [(28, 34), (29, 34), (35, 34)])
     c.row(38, 30, 34, "tan3")
     c.pts("tan2", [(27, 40), (29, 41), (31, 40), (33, 41), (35, 40), (37, 41)])  # stubble
-    return c.save("walter_briggs")
+    return c.save(PORTRAITS / "walter_briggs.png")
 
 
 # ============================================================================
@@ -519,11 +402,8 @@ if __name__ == "__main__":
     Z, M, COLS = 5, 24, 4
     cell = S * Z
     rows = -(-len(cast) // COLS)
-    sheet = Image.new("RGBA", (COLS * cell + (COLS + 1) * M, rows * (cell + M) + M + S + M), (239, 230, 208, 255))
+    sheet = Image.new("RGBA", (COLS * cell + (COLS + 1) * M, rows * (cell + M) + M), PAPER)
     for i, im in enumerate(cast):
-        x = M + (i % COLS) * (cell + M)
-        y = M + (i // COLS) * (cell + M)
-        sheet.alpha_composite(im.resize((cell, cell), Image.NEAREST), (x, y))
-        sheet.alpha_composite(im, (M + i * (S + M), rows * (cell + M) + M))  # real size
-    sheet.save(HERE / "portreler_onizleme.png")
-    print("ok")
+        sheet.alpha_composite(im.resize((cell, cell), Image.NEAREST), (M + (i % COLS) * (cell + M), M + (i // COLS) * (cell + M)))
+    sheet.save(ROOT / "art" / "portraits_preview.png")
+    print(f"{len(cast)} portraits written to {PORTRAITS.relative_to(ROOT)}")

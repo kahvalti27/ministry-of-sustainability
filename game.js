@@ -1,6 +1,6 @@
 // Ministry of Sustainability: the screen. The rules live in engine.js, the content in events.json.
 
-import { TURNS, METERS, SECTORS, newTerm, choose, endTurn, canAfford, eventText, portraitFor,
+import { TURNS, METERS, SECTORS, CRISIS_BELOW, CRISIS_COST, newTerm, choose, endTurn, canAfford, eventText, portraitFor,
   grade, overallGrade, reportLines, termTitle } from "./engine.js";
 
 const SEASONS = ["Spring", "Summer", "Autumn", "Winter"];
@@ -47,7 +47,7 @@ function header() {
 // Shown above the card while a sector is in crisis, so the drain on Budget and Approval is no surprise.
 function crisisNote() {
   if (!state.crisis.length) return "";
-  const costs = Object.entries(state.rules.crisis_cost).map(([key, cost]) => `${cost * state.crisis.length} ${LABELS[key]}`);
+  const costs = Object.entries(CRISIS_COST).map(([key, cost]) => `${cost * state.crisis.length} ${LABELS[key]}`);
   return `<p class="crisis"><b>In crisis:</b> ${state.crisis.map((k) => SECTORS[k]).join(", ")}. That cost you ${costs.join(" and ")} this season.</p>`;
 }
 
@@ -122,7 +122,7 @@ function helpCard() {
     "Each season one problem lands on your desk. Pick one answer. Every answer costs something.",
     "Keep <b>Budget</b>, <b>Approval</b> and <b>Environment</b> above zero. If one of them hits zero, your term is over.",
     "<b>Political capital</b> is what you spend to overrule the cabinet. Run out, and those answers are locked.",
-    `<b>Tourism</b>, <b>Agriculture</b> and <b>Fashion</b> decide your grades in the final report. A sector below ${state.rules.crisis_below} is in crisis and drains your Budget and Approval every season.`,
+    `<b>Tourism</b>, <b>Agriculture</b> and <b>Fashion</b> decide your grades in the final report. A sector below ${CRISIS_BELOW} is in crisis and drains your Budget and Approval every season.`,
     "Some choices come back to your desk a few seasons later.",
   ];
   return `

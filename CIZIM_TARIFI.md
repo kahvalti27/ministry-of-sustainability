@@ -21,8 +21,7 @@ damga. Çizimler bu kâğıdın üstünde duracak.
 Stil **piksel art**. Önce **tek bir portre** (Grandma Rose) çizelim, stili onda oturtalım. Kalanlar
 ona göre gelir.
 
-`art/deneme` klasöründe altı karakterin kodla üretilmiş geçici portreleri var
-(`portreler_onizleme.png`). Boyut, kadraj ve eşyalar için örnek al; çizgiyi ve stili kendine göre yap.
+`art/portraits_preview.png` dosyasında karakterlerin kodla üretilmiş geçici portreleri var. Boyut, kadraj ve eşyalar için örnek al; çizgiyi ve stili kendine göre yap.
 
 ## Ortak kurallar
 
