@@ -362,8 +362,9 @@ real cases.
 4. **Playtest with 5–10 people**, short written report: where they got stuck, which events they
    remembered, how long a term took.
 5. **Look and polish, then release.** *Started:* icons, seal, memo layout, first screen with the
-   cast, season track, danger and crisis warnings, keyboard shortcuts (A/B/C). Still open: the cover
-   image for the store page, pictures for the three lose screens, sound.
+   cast, season track, danger and crisis warnings, keyboard shortcuts (A/B/C). The cover (`art/cover.png`,
+   630×500) and a picture for each of the three lose screens are drawn by `tools/scenes.py`. Still
+   open: sound.
 
 ### Not in the first release
 

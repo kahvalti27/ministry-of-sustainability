@@ -1,5 +1,7 @@
 # Ministry of Sustainability
 
+![A sheep sits at the Minister's desk; a cruise ship passes the window](art/cover.png)
+
 A short, satirical choice game. You are the Minister of Sustainability of a small Mediterranean
 country that lives on tourism, agriculture and fashion. Every season a problem lands on your desk,
 every answer costs something, and some answers come back a few seasons later.
@@ -28,7 +30,7 @@ Then open http://localhost:8123.
   (`node tools/balance.mjs`). It is how the numbers were tuned.
 - `TASARIM.md` is the design document (rules, event list, build order).
 - `tools/portraits.py` draws the 64×64 character portraits and `tools/ui_art.py` the meter icons and
-  the ministry seal. Both use the drawing helpers in `tools/pixel.py` and write into `assets/`.
+  the ministry seal, `tools/scenes.py` the three lose screens and the cover. Both use the drawing helpers in `tools/pixel.py` and write into `assets/`.
 
 ## True story notes: sources
 

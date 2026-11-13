@@ -124,6 +124,7 @@ function reportCard() {
   return `
     <article class="card card--report ${state.ending.lost ? "is-lost" : ""}">
       <p class="memo"><span>${state.ending.lost ? "Game over" : "National Sustainability Report"}</span><span>${esc(country)}</span></p>
+      ${state.ending.lost ? `<img class="scene" src="assets/scenes/${state.ending.lost}.png" width="160" height="80" alt="">` : ""}
       <h2>${esc(state.ending.title)}</h2>
       <p class="text">${esc(state.ending.text)}</p>
       ${title ? `<p class="title"><span>Your title</span><b>${esc(title.name)}</b>${esc(title.text)}</p>` : ""}
