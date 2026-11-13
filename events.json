@@ -1,0 +1,892 @@
+{
+  "country": "Meltemia",
+  "portrait_moods": {
+    "edward_collins": {
+      "meter": "approval",
+      "below": 50,
+      "portrait": "edward_collins_worried"
+    }
+  },
+  "events": [
+    {
+      "id": "sheep_protest",
+      "sector": "agriculture",
+      "speaker": "lily_carter",
+      "title": "The Sheep Situation",
+      "text": "Animal rights activists have chained themselves to the gates of {Country}'s largest sheep farm. The sheep appear unbothered. The farmer, Mr. Harris, is less so.",
+      "requires": [],
+      "blocks": [],
+      "earliest_turn": 1,
+      "options": [
+        {
+          "label": "\"Sheep have been protested before. They'll survive.\"",
+          "result": "The activists start a TikTok account. It has more followers than the Ministry.",
+          "effects": {
+            "approval": -5
+          },
+          "sets_flags": [
+            "sheep_ignored"
+          ],
+          "schedules": {
+            "event": "the_documentary",
+            "in_turns": 3
+          }
+        },
+        {
+          "label": "Shut the farm down.",
+          "result": "400 sheep are now unemployed. The fashion industry calls, panicking about wool.",
+          "effects": {
+            "environment": 5,
+            "agriculture": -10
+          },
+          "sets_flags": [
+            "farm_closed"
+          ],
+          "schedules": {
+            "event": "wool_free_wool",
+            "in_turns": 4
+          }
+        },
+        {
+          "label": "Fund a Sheep Wellbeing Program.",
+          "result": "The sheep now have a better pension plan than your staff.",
+          "effects": {
+            "budget": -15,
+            "agriculture": 15
+          },
+          "sets_flags": [
+            "ethical_wool"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "special_delivery",
+      "sector": "agriculture",
+      "speaker": "walter_briggs",
+      "title": "Special Delivery",
+      "text": "You arrive at the Ministry to find the entrance buried under four tonnes of manure, delivered personally by the {Country} Farmers' Union. A note on top reads: \"You've been treating us like this for years. Now you know how it smells.\" The press is already here. So are the flies.",
+      "real_story": "2024: farmers dumped manure outside government buildings in several countries.",
+      "requires": [],
+      "blocks": [],
+      "earliest_turn": 1,
+      "options": [
+        {
+          "label": "Hold the press conference in front of it. Authenticity sells.",
+          "result": "A photo of you mid-sentence, holding your nose, becomes the country's most popular meme.",
+          "effects": {
+            "agriculture": 10,
+            "approval": -5
+          },
+          "sets_flags": [
+            "manure_meme"
+          ]
+        },
+        {
+          "label": "Meet the union and open negotiations.",
+          "result": "The Prime Minister wanted you to \"stand firm\". The farmers wanted a chair. You gave them a chair.",
+          "effects": {
+            "political": -10,
+            "agriculture": 15
+          },
+          "sets_flags": [
+            "farmers_at_table"
+          ]
+        },
+        {
+          "label": "Turn it into compost and donate it to the city's parks.",
+          "result": "The parks are glorious next spring.",
+          "effects": {
+            "budget": -5,
+            "environment": 10
+          },
+          "sets_flags": [
+            "compost_minister"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "olive_plague",
+      "draft": true,
+      "sector": "agriculture",
+      "speaker": "walter_briggs",
+      "title": "The Olive Plague",
+      "text": "A bacterium is killing {Country}'s olive trees. Some of them were already old when the Romans left. Scientists say every infected grove must be cut down to save the rest. The growers suggest the scientists explain that to a tree somebody's great-grandmother planted.",
+      "real_story": "2013: a bacterium began killing one region's olive trees. Millions are gone.",
+      "requires": [],
+      "blocks": [],
+      "earliest_turn": 1,
+      "options": [
+        {
+          "label": "Cut down every infected grove, now.",
+          "result": "The plague stops at the firebreak. The neighbours' plant inspectors send a fruit basket. It contains no olives.",
+          "effects": {
+            "agriculture": -10,
+            "approval": -10,
+            "political": 10
+          },
+          "sets_flags": [
+            "groves_cut"
+          ]
+        },
+        {
+          "label": "Declare a quarantine zone and wait for more studies.",
+          "result": "The growers are relieved. The study will report in three years. The bacterium has not agreed to wait.",
+          "effects": {
+            "approval": 5,
+            "budget": -5,
+            "tourism": -10
+          },
+          "sets_flags": [
+            "plague_waiting"
+          ]
+        },
+        {
+          "label": "Replant with resistant varieties.",
+          "result": "The new trees are healthy, productive, and about as picturesque as a car park. Give them four hundred years.",
+          "effects": {
+            "budget": -20,
+            "agriculture": 10,
+            "tourism": -5
+          },
+          "sets_flags": [
+            "new_olives"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bees_gone",
+      "draft": true,
+      "sector": "agriculture",
+      "speaker": "grandma_rose",
+      "title": "Where Did the Bees Go?",
+      "text": "{Country}'s beekeepers have arrived at the Ministry carrying empty hives. They blame a pesticide the big fruit growers swear by. The growers have sent a lawyer, a study they paid for, and a very large fruit basket.",
+      "real_story": "2018: three pesticides were banned from outdoor use across a continent to protect bees.",
+      "requires": [],
+      "blocks": [],
+      "earliest_turn": 1,
+      "options": [
+        {
+          "label": "Ban the pesticide.",
+          "result": "The bees return. The growers discover an older pesticide that nobody thought to ban.",
+          "effects": {
+            "environment": 15,
+            "agriculture": -10,
+            "political": -5
+          },
+          "sets_flags": [
+            "bees_saved"
+          ]
+        },
+        {
+          "label": "Commission an independent study.",
+          "result": "The study confirms what the beekeepers said, eighteen months and a third of the hives later.",
+          "effects": {
+            "budget": -5,
+            "environment": -5,
+            "political": 5
+          },
+          "sets_flags": [
+            "bees_study"
+          ]
+        },
+        {
+          "label": "Accept the growers' voluntary code of conduct.",
+          "result": "The code is two pages long. One of them is the cover. Grandma Rose now sells her honey with a note: \"Limited edition. Ask the Minister why.\"",
+          "effects": {
+            "agriculture": 10,
+            "environment": -10,
+            "approval": -5
+          },
+          "sets_flags": [
+            "bees_sold_out"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hazelnut_empire",
+      "draft": true,
+      "sector": "agriculture",
+      "speaker": "edward_collins",
+      "title": "The Hazelnut Empire",
+      "text": "A Very Large Chocolate Company wants to buy every hazelnut {Country} grows for the next ten years, at a fixed price. The Prime Minister has already posed with the jar. All the deal needs is your signature, and for the hillsides to grow nothing else.",
+      "real_story": "today: one country grows most of the world's hazelnuts, and one company is its biggest buyer.",
+      "requires": [],
+      "blocks": [],
+      "earliest_turn": 2,
+      "options": [
+        {
+          "label": "Sign it.",
+          "result": "Farmers pull up their vegetables and plant hazelnuts. The hills are now one colour and one opinion.",
+          "effects": {
+            "agriculture": 15,
+            "budget": 10,
+            "environment": -15
+          },
+          "sets_flags": [
+            "hazelnut_monoculture"
+          ]
+        },
+        {
+          "label": "Sign for half the harvest and keep the rest of the land mixed.",
+          "result": "The company calls it \"disappointing\". The Prime Minister calls it \"your idea\".",
+          "effects": {
+            "agriculture": 5,
+            "political": -10
+          },
+          "sets_flags": [
+            "hazelnut_half"
+          ]
+        },
+        {
+          "label": "Refuse, and fund a growers' cooperative instead.",
+          "result": "The cooperative's first product is a spread. It is very good. It has no marketing budget and a name nobody can pronounce.",
+          "effects": {
+            "budget": -15,
+            "approval": 5,
+            "environment": 5
+          },
+          "sets_flags": [
+            "hazelnut_coop"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tomato_pickers",
+      "draft": true,
+      "sector": "agriculture",
+      "title": "Who Picks the Tomatoes?",
+      "text": "A journalist has photographed where {Country}'s tomato pickers sleep: sheds with no water, an hour from the fields. The pickers are hired through middlemen who take a cut of every crate. The canning companies say they have never heard of these middlemen, whom they pay monthly.",
+      "real_story": "2016: a law against gang-masters was passed after a farm worker died in the fields.",
+      "requires": [],
+      "blocks": [],
+      "earliest_turn": 2,
+      "options": [
+        {
+          "label": "Raid the middlemen and prosecute them.",
+          "result": "Three middlemen are arrested. The canning companies praise your courage and raise their prices \"due to regulation\".",
+          "effects": {
+            "approval": 10,
+            "agriculture": -10,
+            "political": -5
+          },
+          "sets_flags": [
+            "middlemen_raided"
+          ]
+        },
+        {
+          "label": "Make the canning companies legally responsible for their whole supply chain.",
+          "result": "The companies find their middlemen within a day. It turns out they had the phone numbers all along.",
+          "effects": {
+            "approval": 10,
+            "political": -15,
+            "agriculture": -5
+          },
+          "sets_flags": [
+            "supply_chain_law"
+          ]
+        },
+        {
+          "label": "Announce a task force.",
+          "result": "The task force meets quarterly. The harvest is weekly.",
+          "effects": {
+            "political": 5,
+            "agriculture": 5,
+            "approval": -10,
+            "budget": -5
+          },
+          "sets_flags": [
+            "task_force"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "floating_city",
+      "draft": true,
+      "sector": "tourism",
+      "speaker": "margaret_hale",
+      "title": "The Floating City",
+      "text": "The Minister of Tourism has wonderful news: the world's largest cruise ship wants to dock in {Country}'s old harbour. It carries six thousand guests and is taller than the cathedral. \"Think of it,\" she says, \"as a second, better skyline.\"",
+      "real_story": "2021: a lagoon city banned large cruise ships from its historic centre.",
+      "requires": [],
+      "blocks": [],
+      "earliest_turn": 1,
+      "options": [
+        {
+          "label": "Let it dock.",
+          "result": "The ship's wake rearranges the fish market. The passengers stay four hours and buy one magnet each.",
+          "effects": {
+            "tourism": 15,
+            "budget": 5,
+            "environment": -15
+          },
+          "sets_flags": [
+            "cruise_welcome"
+          ]
+        },
+        {
+          "label": "Send it to the industrial port outside town.",
+          "result": "The passengers arrive by shuttle bus, past the oil tanks. Margaret Hale stops inviting you to lunch.",
+          "effects": {
+            "tourism": 5,
+            "political": -10
+          },
+          "sets_flags": [
+            "cruise_outside"
+          ]
+        },
+        {
+          "label": "Ban large ships from the old harbour.",
+          "result": "The harbour is so quiet you can hear Margaret Hale's press conference from across the bay.",
+          "effects": {
+            "environment": 10,
+            "approval": 5,
+            "tourism": -10,
+            "political": -5
+          },
+          "sets_flags": [
+            "cruise_banned"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "nobody_lives_here",
+      "draft": true,
+      "sector": "tourism",
+      "speaker": "grandma_rose",
+      "title": "Nobody Lives Here Anymore",
+      "text": "{Country}'s old town has four hundred holiday flats, thirty souvenir shops and, as of this week, eleven residents. One of them is Grandma Rose. Nine people have offered to buy her flat. Two of them asked at a funeral.",
+      "real_story": "2023: a historic city banned new short-term holiday lets in its old centre.",
+      "requires": [],
+      "blocks": [],
+      "earliest_turn": 2,
+      "options": [
+        {
+          "label": "Cap holiday rentals in the old town.",
+          "result": "Rents fall. Three families move back. The key-box industry stages a small, sad protest.",
+          "effects": {
+            "approval": 10,
+            "tourism": -10,
+            "political": -5
+          },
+          "sets_flags": [
+            "rentals_capped"
+          ]
+        },
+        {
+          "label": "Tax them, and spend the money on housing.",
+          "result": "The tax raises a fortune. The housing will be ready in six years, somewhere with a bus.",
+          "effects": {
+            "budget": 10,
+            "tourism": -5,
+            "approval": -5
+          },
+          "sets_flags": [
+            "rentals_taxed"
+          ]
+        },
+        {
+          "label": "Leave the market alone.",
+          "result": "The eleventh resident is now a boutique hotel. Grandma Rose is not selling. She has started charging tourists to photograph her.",
+          "effects": {
+            "tourism": 10,
+            "approval": -10
+          },
+          "sets_flags": [
+            "old_town_empty"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "secret_beach",
+      "draft": true,
+      "sector": "tourism",
+      "speaker": "lily_carter",
+      "title": "The Secret Beach",
+      "text": "An influencer has posted {Country}'s last secret beach to four million followers, with directions. By Friday there are two beach bars, a drone show and a queue for the sunset. The turtles have made no complaint, mostly because they have left.",
+      "real_story": "2018: a famous beach was closed to visitors after the crowds wrecked its coral.",
+      "requires": [],
+      "blocks": [],
+      "earliest_turn": 1,
+      "options": [
+        {
+          "label": "Close the beach for the season.",
+          "result": "The turtles return. The influencer posts a tearful video from the car park. It does very well.",
+          "effects": {
+            "environment": 15,
+            "tourism": -10,
+            "approval": -5
+          },
+          "sets_flags": [
+            "beach_closed"
+          ]
+        },
+        {
+          "label": "Keep it open, but make the beach bars switch to \"biodegradable\" cups.",
+          "result": "Everyone feels much better. The cups are still on the beach in spring, looking exactly as they did.",
+          "effects": {
+            "approval": 10,
+            "tourism": 5,
+            "environment": -10
+          },
+          "sets_flags": [
+            "green_cups"
+          ],
+          "looks_green": true,
+          "real_story": "2019: \"biodegradable\" bags could still carry shopping after three years in soil and sea."
+        },
+        {
+          "label": "Sell tickets: two hundred visitors a day.",
+          "result": "The beach survives. Local families now need a ticket to the place they learned to swim.",
+          "effects": {
+            "budget": 10,
+            "environment": -5,
+            "approval": -5
+          },
+          "sets_flags": [
+            "beach_tickets"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "umbrella_wars",
+      "draft": true,
+      "sector": "tourism",
+      "speaker": "margaret_hale",
+      "title": "Umbrella Wars",
+      "text": "{Country}'s public beach now has a fence, a doorman and a minimum spend. The beach clubs have rented the sand from the state since before you were born, for roughly the price of a sunbed. The Minister of Tourism calls them \"the backbone of the coast\".",
+      "real_story": "today: in one country, beach concessions were renewed for decades without ever being put up for competition.",
+      "requires": [],
+      "blocks": [],
+      "earliest_turn": 2,
+      "options": [
+        {
+          "label": "Put every concession up for open auction.",
+          "result": "The club owners, who have never competed for anything, find the experience unpleasant. Three of them turn out to be cousins of ministers.",
+          "effects": {
+            "budget": 15,
+            "political": -15,
+            "tourism": -5
+          },
+          "sets_flags": [
+            "concessions_auctioned"
+          ]
+        },
+        {
+          "label": "Order half of every beach to be free and open.",
+          "result": "Families return with their own umbrellas. The clubs make sure the free half is the half with the rocks.",
+          "effects": {
+            "approval": 10,
+            "tourism": -5,
+            "political": -10
+          },
+          "sets_flags": [
+            "free_beaches"
+          ]
+        },
+        {
+          "label": "Renew the concessions for ten more years.",
+          "result": "The clubs celebrate with a party. You are not on the list, but you can watch from the road.",
+          "effects": {
+            "political": 10,
+            "tourism": 5,
+            "approval": -15
+          },
+          "sets_flags": [
+            "concessions_renewed"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pay_to_enter",
+      "draft": true,
+      "sector": "tourism",
+      "speaker": "edward_collins",
+      "title": "Pay to Enter",
+      "text": "On a summer Saturday the capital's old centre holds ninety thousand day-trippers and nine public toilets. Someone has proposed an entry fee. The Prime Minister has two questions: how much does it raise, and will voters have to pay it?",
+      "real_story": "2024: a city began charging day visitors a fee to enter.",
+      "requires": [],
+      "blocks": [],
+      "earliest_turn": 3,
+      "options": [
+        {
+          "label": "Charge every day visitor.",
+          "result": "The fee raises a fortune and puts off nobody. The queue to pay it becomes an attraction.",
+          "effects": {
+            "budget": 15,
+            "tourism": -5,
+            "approval": -5
+          },
+          "sets_flags": [
+            "entry_fee"
+          ]
+        },
+        {
+          "label": "Cap visitor numbers instead, with free booking.",
+          "result": "The streets can be walked again. A black market in free tickets opens within the hour.",
+          "effects": {
+            "environment": 5,
+            "approval": 5,
+            "tourism": -15
+          },
+          "sets_flags": [
+            "visitor_cap"
+          ]
+        },
+        {
+          "label": "Build more toilets.",
+          "result": "There are now forty toilets. They are the best-reviewed attraction in the country.",
+          "effects": {
+            "tourism": 10,
+            "budget": -10,
+            "environment": -5
+          },
+          "sets_flags": [
+            "more_toilets"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "all_inclusive",
+      "draft": true,
+      "sector": "tourism",
+      "speaker": "margaret_hale",
+      "title": "All Inclusive, Nothing Local",
+      "text": "The giant resorts on the south coast fly in their food, their staff and their entertainment. Guests are given a wristband and no reason to leave. In the village next door, four restaurants have closed and the fifth is thinking about it.",
+      "requires": [],
+      "blocks": [],
+      "earliest_turn": 2,
+      "options": [
+        {
+          "label": "Require the resorts to buy a third of their food locally.",
+          "result": "The resorts comply. The buffet now has a \"local corner\". It is the only one with a queue.",
+          "effects": {
+            "agriculture": 15,
+            "tourism": -10,
+            "political": -5
+          },
+          "sets_flags": [
+            "local_buffet"
+          ]
+        },
+        {
+          "label": "Accept the resorts' own plan: a towel card in every room.",
+          "result": "Every room now asks guests to save the planet by reusing a towel. The laundry bill falls. Nothing else does.",
+          "effects": {
+            "approval": 5,
+            "political": 5,
+            "agriculture": -10
+          },
+          "sets_flags": [
+            "towel_cards"
+          ],
+          "looks_green": true,
+          "real_story": "1986: the word \"greenwashing\" was invented to describe hotel towel cards."
+        },
+        {
+          "label": "Give the villages money to advertise themselves.",
+          "result": "The campaign slogan is \"Leave the Resort\". The resorts respond by building a wall, tastefully.",
+          "effects": {
+            "budget": -15,
+            "agriculture": 5,
+            "tourism": 5
+          },
+          "sets_flags": [
+            "village_campaign"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ban_the_meme",
+      "draft": true,
+      "sector": "cross",
+      "speaker": "edward_collins",
+      "title": "Ban the Meme",
+      "text": "The photo of you holding your nose is now on mugs, T-shirts and at least one tattoo. The Prime Minister has a solution: ban the app it is spreading on. \"No app, no meme,\" he says. \"I had someone check.\"",
+      "real_story": "2025: a government blocked 26 social media platforms. Within days its prime minister had resigned.",
+      "requires": [
+        "manure_meme"
+      ],
+      "blocks": [],
+      "earliest_turn": 3,
+      "options": [
+        {
+          "label": "Back the ban.",
+          "result": "The ban lasts four days. The meme, now printed on protest signs, lasts longer.",
+          "effects": {
+            "political": 10,
+            "approval": -15
+          },
+          "sets_flags": [
+            "app_banned"
+          ]
+        },
+        {
+          "label": "Talk him out of it.",
+          "result": "The Prime Minister agrees, on the condition that the next meme is also about you.",
+          "effects": {
+            "political": -10,
+            "approval": 5
+          },
+          "sets_flags": [
+            "ban_stopped"
+          ]
+        },
+        {
+          "label": "Make the meme the Ministry's official logo.",
+          "result": "Nobody can mock what is already on the letterhead. The Prime Minister tries anyway.",
+          "effects": {
+            "budget": -5,
+            "political": -5,
+            "approval": 10
+          },
+          "sets_flags": [
+            "meme_logo"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "the_documentary",
+      "draft": true,
+      "sector": "tourism",
+      "speaker": "margaret_hale",
+      "title": "The Documentary",
+      "text": "A streaming documentary, \"Wool of Silence\", has aired in eleven countries. It features your line about sheep having been protested before, set to sad violins. Travel forums are full of people cancelling their trips to {Country}.",
+      "real_story": "today: campaigners ask tourists to boycott a group of islands over a traditional hunt.",
+      "follow_up_only": true,
+      "options": [
+        {
+          "label": "Invite the film crew back for a sequel.",
+          "result": "\"Wool of Silence 2: Shear Hope\" gets worse reviews and a better ending.",
+          "effects": {
+            "budget": -10,
+            "tourism": 10
+          }
+        },
+        {
+          "label": "Launch a counter-campaign: \"Our Sheep Are Fine, Actually.\"",
+          "result": "The slogan trends for the wrong reasons. Still, people are talking about the beaches again.",
+          "effects": {
+            "budget": -5,
+            "approval": -5,
+            "tourism": 5
+          }
+        },
+        {
+          "label": "Say nothing. The internet forgets.",
+          "result": "The internet forgets in nine days. The tour operators do not.",
+          "effects": {
+            "tourism": -15,
+            "political": 5
+          }
+        }
+      ]
+    },
+    {
+      "id": "wool_free_wool",
+      "draft": true,
+      "sector": "fashion",
+      "speaker": "julian_frost",
+      "title": "Wool-Free Wool",
+      "text": "With the farm closed, {Country}'s knitwear makers have switched to imported synthetic fleece. Sales are up. So is the number of plastic fibres in the harbour: a fisherman has posted you a sea bass and a microscope.",
+      "real_story": "today: washing synthetic clothes is one of the main sources of microplastics in the sea.",
+      "follow_up_only": true,
+      "options": [
+        {
+          "label": "Require filters on every factory washing line.",
+          "result": "The factories comply. Their press release calls the filters \"a bold design choice\".",
+          "effects": {
+            "fashion": -10,
+            "environment": 10
+          }
+        },
+        {
+          "label": "Subsidise a return to natural fibres.",
+          "result": "Wool is back. The sheep, wherever they went, are unavailable for comment.",
+          "effects": {
+            "budget": -15,
+            "fashion": 5,
+            "agriculture": 10
+          }
+        },
+        {
+          "label": "Call it \"ocean-inspired\" and move on.",
+          "result": "Julian Frost sends flowers. They are polyester.",
+          "effects": {
+            "fashion": 10,
+            "environment": -15
+          }
+        }
+      ]
+    }
+  ],
+  "report_lines": [
+    {
+      "flag": "sheep_ignored",
+      "sector": "agriculture",
+      "text": "The Minister's position on sheep remains that they will survive."
+    },
+    {
+      "flag": "farm_closed",
+      "sector": "agriculture",
+      "text": "The country's largest sheep farm is now a very quiet field."
+    },
+    {
+      "flag": "ethical_wool",
+      "sector": "agriculture",
+      "text": "The Sheep Wellbeing Program opened a visitor centre. The sheep have a gift shop."
+    },
+    {
+      "flag": "manure_meme",
+      "sector": "agriculture",
+      "text": "The cover of this report is, by popular demand, the meme."
+    },
+    {
+      "flag": "farmers_at_table",
+      "sector": "agriculture",
+      "text": "The Farmers' Union now has a permanent chair at the Ministry. It is a good chair."
+    },
+    {
+      "flag": "compost_minister",
+      "sector": "agriculture",
+      "text": "The city's parks have never looked better. Nobody asks why."
+    },
+    {
+      "flag": "groves_cut",
+      "sector": "agriculture",
+      "text": "The olive plague stopped at the firebreak. So did several friendships."
+    },
+    {
+      "flag": "plague_waiting",
+      "sector": "agriculture",
+      "text": "The olive study is due next year. The olives are not."
+    },
+    {
+      "flag": "new_olives",
+      "sector": "tourism",
+      "text": "Visitors are kindly asked to imagine the new olive groves four hundred years from now."
+    },
+    {
+      "flag": "bees_saved",
+      "sector": "agriculture",
+      "text": "The bees are back. They have not thanked anyone."
+    },
+    {
+      "flag": "bees_sold_out",
+      "sector": "agriculture",
+      "text": "Honey is now sold by the teaspoon."
+    },
+    {
+      "flag": "hazelnut_monoculture",
+      "sector": "agriculture",
+      "text": "The country grows one crop, sells it to one buyer, and prays for one kind of weather."
+    },
+    {
+      "flag": "hazelnut_coop",
+      "sector": "agriculture",
+      "text": "The growers' cooperative makes an excellent spread that nobody can pronounce."
+    },
+    {
+      "flag": "middlemen_raided",
+      "sector": "agriculture",
+      "text": "Three middlemen are in court. Their phones are still ringing."
+    },
+    {
+      "flag": "supply_chain_law",
+      "sector": "agriculture",
+      "text": "Tomato pickers now have contracts, water and a roof. It only took a photograph."
+    },
+    {
+      "flag": "task_force",
+      "sector": "agriculture",
+      "text": "The Tomato Task Force has scheduled its next meeting."
+    },
+    {
+      "flag": "cruise_welcome",
+      "sector": "tourism",
+      "text": "The old harbour has a new skyline. It leaves every evening at six."
+    },
+    {
+      "flag": "cruise_banned",
+      "sector": "tourism",
+      "text": "The old harbour is quiet. The Minister of Tourism is not."
+    },
+    {
+      "flag": "rentals_capped",
+      "sector": "tourism",
+      "text": "The old town has neighbours again. Some of them even know each other."
+    },
+    {
+      "flag": "old_town_empty",
+      "sector": "tourism",
+      "text": "The old town's last resident is listed as a heritage attraction."
+    },
+    {
+      "flag": "beach_closed",
+      "sector": "tourism",
+      "text": "The secret beach is secret again. The turtles would like it to stay that way."
+    },
+    {
+      "flag": "green_cups",
+      "sector": "tourism",
+      "text": "The \"biodegradable\" cups on the secret beach are expected to outlast this report."
+    },
+    {
+      "flag": "beach_tickets",
+      "sector": "tourism",
+      "text": "The secret beach now has opening hours and a gift shop."
+    },
+    {
+      "flag": "concessions_auctioned",
+      "sector": "tourism",
+      "text": "The beach clubs were auctioned. Several ministers' cousins are looking for work."
+    },
+    {
+      "flag": "free_beaches",
+      "sector": "tourism",
+      "text": "Half of every beach is free. It is the half with the rocks."
+    },
+    {
+      "flag": "concessions_renewed",
+      "sector": "tourism",
+      "text": "The beach clubs will keep the sand until your grandchildren retire."
+    },
+    {
+      "flag": "entry_fee",
+      "sector": "tourism",
+      "text": "The capital sells tickets to itself."
+    },
+    {
+      "flag": "more_toilets",
+      "sector": "tourism",
+      "text": "The country's best-reviewed attraction is a public toilet."
+    },
+    {
+      "flag": "local_buffet",
+      "sector": "agriculture",
+      "text": "The resorts' \"local corner\" is the only part of the buffet with a queue."
+    },
+    {
+      "flag": "towel_cards",
+      "sector": "tourism",
+      "text": "Every resort room carries a towel card. The laundry savings were considerable."
+    },
+    {
+      "flag": "village_campaign",
+      "sector": "tourism",
+      "text": "\"Leave the Resort\" is the most successful slogan the Ministry has ever paid for."
+    }
+  ]
+}
