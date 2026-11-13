@@ -235,6 +235,20 @@ h2 { margin: 0; font-size: 32px; line-height: .95; text-wrap: balance; overflow-
   .speaker img { height: 68px; }
 }
 
+/* Wide screens: the numbers sit in a panel on the left, the card on the right.
+   The first screen has no header, so it stays a single centred card. */
+@media (min-width: 940px) {
+  #app:has(> .top) {
+    display: grid; grid-template-columns: 360px 500px; column-gap: 32px;
+    grid-template-rows: repeat(5, max-content) 1fr;  /* up to five things on the left; the card takes the rest */
+    justify-content: center; align-items: start;
+    max-width: none; padding-top: 28px;
+  }
+  #app:has(> .top) > * { grid-column: 1; }
+  #app:has(> .top) > .card { grid-column: 2; grid-row: 1 / -1; }
+  .meters:not(.meters--sectors) { grid-template-columns: 1fr; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
