@@ -68,10 +68,16 @@ pick the options the cabinet already likes.
 Nobody finishes a term with everything saved. Success is surviving sixteen seasons *and* being able
 to live with what you gave up. The report should make that trade visible.
 
-*Proposal, not approved yet:* the report gives the player a title worked out from the final numbers,
-for example **The Accountant** (budget full, environment wrecked), **The Martyr** (environment fine,
-approval at the floor), **The Survivor** (everything average, nothing solved) and
-**The Greenwasher** (voters happy, environment poor, many "looks green" choices).
+A term that is not lost earns a title, worked out from the final numbers. The first one that fits
+is used:
+
+| Title | When |
+|---|---|
+| **The Greenwasher** | Two or more looks-green choices, and Environment under 50 |
+| **The Accountant** | Budget 55 or more, Environment under 50 |
+| **The Martyr** | Environment 60 or more, Approval under 40 |
+| **The Gardener** | Environment 65 or more |
+| **The Survivor** | Everything else |
 
 ## 4. Meters
 
@@ -84,19 +90,35 @@ Four meters, always visible:
 | **Environment** | Water, soil, emissions, biodiversity | Game over |
 | **Political capital** | Your influence in the cabinet | Costly options are locked |
 
-Three **sector bars** (Tourism, Agriculture, Fashion), shown smaller. They cannot end the game.
-They decide the grades in the final report, and they replace a separate "economy" meter: the
-economy is how the three sectors are doing.
+Three **sector bars** (Tourism, Agriculture, Fashion), shown smaller. They decide the grades in the
+final report, and they replace a separate "economy" meter: the economy is how the three sectors
+are doing.
 
-All values run from 0 to 100. Start: every meter and bar at 50, Budget at 60.
+**Sector crisis.** A sector bar cannot end the game by itself, but a sector below 30 is in crisis:
+every season it stays there costs 2 Budget and 5 Approval (jobs and taxes are gone). Without this
+rule, ignoring the economy was free: a player who always picked the greenest option never lost.
+
+All values run from 0 to 100. Start: Budget 60, Approval 45, Environment 40, Political capital 50,
+every sector 50. The Minister inherits a country whose environment is already in trouble.
 
 ### Balance targets
 
 - A single effect is usually between ±5 and ±15, never more than ±20.
 - A player who picks at random should lose roughly 30–50% of the time. A careful player should
   usually finish the term.
-- These numbers are checked with a small script that plays thousands of random terms (section 10),
-  not by feel.
+- These numbers are checked with `tools/balance.mjs`, which plays thousands of terms, not by feel.
+
+Measured in November 2026, 20,000 terms per strategy, all 26 events:
+
+| Strategy | Loses | Lost to Budget / Approval / Environment |
+|---|---|---|
+| Random | 32% | 10% / 12% / 10% |
+| Careful (protects the lowest of the three lethal meters, ignores sectors) | 14% | 0% / 14% / 0% |
+| Always the greenest option | 96% | 0% / 96% / 0% |
+| Always the most popular option | 35% | 34% / 0% / 1% |
+
+Before the sector crisis rule and the new start values, random play lost 13% of the time and the
+greenest-option strategy never lost.
 
 ## 5. Design rules
 
@@ -204,6 +226,7 @@ touching the game engine.
 | `looks_green` | Optional, on an option. Marks it as something that looks sustainable and is not; the report lists it |
 | `real_story` (on an option) | Optional. A true story note for this option only; it replaces the event's note |
 | `schedules` | One follow-up event that will appear after `in_turns` turns |
+| `intro_if` | Optional, on an event. `flag` and `text`: a sentence put before the event text when that flag is set |
 
 The two tools do different jobs:
 
@@ -212,9 +235,11 @@ The two tools do different jobs:
   final report.
 
 The file also has three top-level fields: `portrait_moods`, which swaps a character's portrait
-while a meter is below a number (the Prime Minister looks worried while Approval is under 50); `country`, the name the first screen suggests when the
-player has not typed one, and `report_lines`, the flag-based sentences of
-the final report (`flag`, `sector`, `text`).
+while a meter is below a number (the Prime Minister looks worried while Approval is under 50);
+`country`, the name the first screen suggests when the player has not typed one; and
+`report_lines`, the flag-based sentences of the final report (`flag`, `sector`, `text`). Two
+optional ones, `start` and `rules`, override the start values and the sector crisis numbers; they
+exist so the balance script can try other numbers.
 
 ### True story notes
 
@@ -314,7 +339,9 @@ real cases.
 | C1 | The Documentary | A streaming documentary about the sheep farm airs abroad; tourists start a boycott (Tourism) | A1, option 1 |
 | C2 | Wool-Free Wool | With local wool gone, textile makers switch to imported synthetics; microplastics turn up in the fish (Fashion) | A1, option 2 |
 | C3 | Ban the Meme | The manure meme is everywhere; the Prime Minister wants to ban the app it spreads on (inspired by Nepal's 2025 social media ban). Not scheduled: it joins the random pool once `manure_meme` is set (Cabinet) | A2, option 1 |
-| C4–C6 | *(free slots)* | To be filled as the other events are written, one per event at most | |
+| C4 | A Slight Scrape | The world's largest cruise ship hits the old harbour (Tourism) | T1, option 1 |
+| C5 | Blue Harvest | The fields downstream of the dye works grow indigo tomatoes (Agriculture) | F2, option 2 |
+| C6 | One Bad Frost | One cold night kills a third of the hazelnut crop, and nothing else is planted (Agriculture) | A5, option 1 |
 
 ## 10. First release
 
@@ -330,10 +357,11 @@ real cases.
 
 1. **Engine with the two written events.** *Done.* Ugly is fine. Goal: one choice changes meters and a
    follow-up arrives on the right turn.
-2. **All events written and playable.** *In progress:* 15 of 26 are in `events.json`. A1 and A2 are final;
-   A3–A6, T1–T6, C1, C2 and C3 are drafts (`"draft": true`) waiting for the owner to read and rewrite.
-3. **Balance script:** plays thousands of random terms and reports how often each lose condition
-   happens and where the meters end. Adjust numbers until the targets in section 4 are met.
+2. **All events written and playable.** *Written:* all 26 are in `events.json`. A1 and A2 are final;
+   the other 24 are drafts (`"draft": true`) waiting for the owner to read and rewrite.
+3. **Balance script.** *Done:* `tools/balance.mjs` plays thousands of terms and reports how often
+   each lose condition happens and where the meters end. The numbers meet the targets in section 4.
+   Run it again after any change to effects.
 4. **Playtest with 5–10 people**, short written report: where they got stuck, which events they
    remembered, how long a term took.
 5. **Look and polish, then release.**

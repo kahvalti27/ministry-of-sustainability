@@ -4,7 +4,8 @@ A short, satirical choice game. You are the Minister of Sustainability of a smal
 country that lives on tourism, agriculture and fashion. Every season a problem lands on your desk,
 every answer costs something, and some answers come back a few seasons later.
 
-Work in progress: 15 of the planned 26 events are written.
+Work in progress: all 26 planned events are written as drafts and the numbers are balanced. Still to do: the
+owner's rewrite of the drafts, a playtest, and the final look.
 
 ## Run it
 
@@ -20,7 +21,11 @@ Then open http://localhost:8123.
 ## How it is built
 
 - `events.json` holds every event, option, effect and report line. Adding an event needs no code.
-- `game.js` is the engine: meters, event selection, flags, scheduled follow-ups, the final report.
+- `engine.js` is the rules: meters, event selection, flags, scheduled follow-ups, sector crises, the
+  final report and its titles. It has no screen attached.
+- `game.js` draws a term in the browser.
+- `tools/balance.mjs` plays thousands of terms with simple strategies and reports how they end
+  (`node tools/balance.mjs`). It is how the numbers were tuned.
 - `TASARIM.md` is the design document (rules, event list, build order).
 - `art/deneme/portreler.py` draws the 64×64 character portraits.
 
@@ -47,10 +52,13 @@ small "True story" stamp gives only a year and what happened. The sources are he
 | The Documentary | today: campaigners ask tourists to boycott a group of islands over a traditional hunt. | To be added |
 | Wool-Free Wool | today: washing synthetic clothes is one of the main sources of microplastics in the sea. | To be added |
 
-Notes planned for events that are not written yet:
-
-| Topic | Note | Source |
-|---|---|---|
-| Paper straws | 2023: most paper straws tested had forever chemicals in them. | [NBC News, 2023](https://www.nbcnews.com/health/health-news/paper-bamboo-straws-contain-pfas-forever-chemicals-rcna101614) |
-| Cotton tote bags | 2018: a study found a cotton tote must be used thousands of times to match a plastic bag. | [FashionUnited, 2021](https://fashionunited.uk/news/fashion/why-cotton-tote-bags-are-killing-the-planet-too/2021082657379) |
-| Carbon offsets | 2023: an investigation found most of one big certifier's rainforest credits saved no carbon. | [EcoWatch, 2023](https://www.ecowatch.com/phantom-credits-verra.html) |
+| The Green Gala | 2021: a study found that six in ten green claims by big fashion brands were misleading. | [Eco-Business](https://www.eco-business.com/zh-hans/news/almost-60-per-cent-of-sustainability-claims-by-fashion-giants-are-greenwash/) |
+| The River Is Blue Today | today: near some textile towns, the river changes colour with whatever dye was used that week. | [The Daily Star](https://www.thedailystar.net/backpage/news/louhajang-river-palette-pollution-1738819) |
+| Mount Textile | 2021: a dump of unsold clothes in a desert was reported to be growing by 39,000 tonnes a year. | [Al Jazeera, 2021](https://www.aljazeera.com/gallery/2021/11/8/chiles-desert-dumping-ground-for-fast-fashion-leftovers) |
+| Behind the Workshop Door | 2024: a court heard that a handbag sold for 2,600 euros had cost 53 euros to make in a subcontracted workshop. | [The Fashion Law](https://www.thefashionlaw.com/cheap-bags-labor-abuses-made-in-italy-continues-to-face-scrutiny/) |
+| The Water War | 2024: in a record drought, one region cut farm irrigation by 80% while hotels paid for their own desalination plant. | [Catalan News](https://www.catalannews.com/drought/item/catalonia-declares-drought-emergency---what-it-means) |
+| A Slight Scrape | 2019: a cruise ship lost control in a lagoon city and hit a quay and a tour boat. | [NPR, 2019](https://www.npr.org/2019/06/02/729075426/massive-cruise-ship-crashes-into-port-in-venice-injuring-at-least-5) |
+| One Bad Frost | 2025: one spring frost cut the world's biggest hazelnut harvest by about a third. | [FreshPlaza](https://www.freshplaza.com/europe/article/9757019/turkey-frost-cuts-hazelnuts-hitting-nutella-and-ferrero) |
+| Poll Panic (paper straws option) | 2023: most paper straws tested had forever chemicals in them. | [NBC News, 2023](https://www.nbcnews.com/health/health-news/paper-bamboo-straws-contain-pfas-forever-chemicals-rcna101614) |
+| The Green Gala (tote option) | 2018: a study found a cotton tote must be used thousands of times to match a plastic bag. | [FashionUnited, 2021](https://fashionunited.uk/news/fashion/why-cotton-tote-bags-are-killing-the-planet-too/2021082657379) |
+| The Neighbours' Green Fund (credits option) | 2023: an investigation found most of one big certifier's rainforest credits saved no carbon. | [EcoWatch, 2023](https://www.ecowatch.com/phantom-credits-verra.html) |
